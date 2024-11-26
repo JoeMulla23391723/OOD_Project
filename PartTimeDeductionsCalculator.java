@@ -8,6 +8,7 @@ public class PartTimeDeductionsCalculator {
     private double totalTaxRelief; //tax relief
     private double totalTaxReliefPerMonth; //tax relief
     private double totalUnionFees; //unions
+    private double totalNetTax; 
     private double totalUnionFeesPerMonth; //unions
     private double healthInsuranceCost; //health insurance Cost
     private double healthInsuranceCompanyDiscount; //health
@@ -242,9 +243,17 @@ public class PartTimeDeductionsCalculator {
         totalTaxReliefPerMonth = totalTaxRelief;
         return totalTaxReliefPerMonth;
     }
+    public void setNetTax(double totalNetTax) {
+    	this.totalNetTax = totalNetTax; 
+    }
 
-    public double calculateNettTax(int employeeID) {
-        return calculateGrossTax(employeeID)-calculateTaxRelief(employeeID);
+    public double calculateNetTax(int employeeID) {
+    	totalNetTax = calculateGrossTax(employeeID)-calculateTaxRelief(employeeID);
+    	setNetTax(totalNetTax); 
+        return totalNetTax;   
+    }
+    public double getNetTax() {
+    	return totalNetTax; 
     }
     public void setUnionFees(double totalUnionFeesPerMonth) {
         this.totalUnionFeesPerMonth=totalUnionFeesPerMonth;
