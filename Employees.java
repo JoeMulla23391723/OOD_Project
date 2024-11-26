@@ -2,8 +2,6 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-gdfgsdfgsfdgsdfgsgf
-     test test ahahahahah
 
     
 public class Employees {
