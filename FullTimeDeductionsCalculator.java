@@ -6,6 +6,7 @@ public class FullTimeDeductionsCalculator {
     private double grossTax; //income tax
     private double grossTaxPerMonth; //income tax
     private double totalTaxRelief; //tax relief
+    private double totalNetTax; 
     private double totalUnionFees; //unions
     private double totalUnionFeesPerMonth; //unions
     private double healthInsuranceCost; //health insurance Cost
@@ -221,9 +222,15 @@ public class FullTimeDeductionsCalculator {
         double totalTaxReliefPerMonth = totalTaxRelief / 12;
         return totalTaxReliefPerMonth;
     }
+    public void setNetTax(double totalNetTax) {
+    	this.totalNetTax= totalNetTax; 
+    }
 
-    public double calculateNettTax(int employeeID) {
-        return calculateGrossTax(employeeID)-calculateTaxRelief(employeeID);
+    public void calculateNetTax(int employeeID) {
+        setNetTax(calculateGrossTax(employeeID)-calculateTaxRelief(employeeID));
+    }
+    public double getNetTax() {
+    	return totalNetTax; 
     }
 
     //
