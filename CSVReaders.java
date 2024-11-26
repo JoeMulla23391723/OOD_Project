@@ -10,8 +10,7 @@ import java.io.*;
         }
 
         //Method to read the file rows one by one and splits it at each comma
-        //By convention, each piece of data is called a token
-        //Can put into a loop to read each row in a CSV file
+        //Each piece of data is called a token
         public String[] getValuesFromCSVFile() {
             String[] tokens;
             String row = input.nextLine();
@@ -20,41 +19,33 @@ import java.io.*;
             return tokens;
         }
 
+        // Method to read a CSV of full-time employee details into an array of objects of type 'Employee'
         public ArrayList<FullTimeEmployee> readFullTimeEmployees(){
             int lineNum = 0;
             ArrayList <FullTimeEmployee> employeeDetails = new ArrayList<FullTimeEmployee>();
-            //Skips the header line
             String header = input.nextLine();
-
-            //Loop to create a new Employee from the data - will read every line of the csv file
             while (input.hasNext()) {
-                //get individual values from each line
                 String[] tokens = getValuesFromCSVFile();
-                //add these values to one single employee
                 employeeDetails.add(new FullTimeEmployee(tokens));
             }
-
             input.close();
             return employeeDetails;
         }
+
+        // Method to read a CSV of part-time employee details into an array of objects of type 'Employee'
         public ArrayList<PartTimeEmployee> readPartTimeEmployees(){
             int lineNum = 0;
             ArrayList <PartTimeEmployee> employeeDetails = new ArrayList<PartTimeEmployee>();
             //Skips the header line
             String header = input.nextLine();
-
-            //Loop to create a new Employee from the data - will read every line of the csv file
             while (input.hasNext()) {
                 //get individual values from each line
                 String[] tokens = getValuesFromCSVFile();
                 //add these values to one single employee
                 employeeDetails.add(new PartTimeEmployee(tokens));
             }
-
             input.close();
             return employeeDetails;
         }
-
-
     }
 
