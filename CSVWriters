@@ -5,20 +5,22 @@ import java.util.ArrayList;
 
 public class CSVWriters {
    
-	private PrintWriter writer;
+	private PrintWriter fullTimeWriter;
+	private PrintWriter partTimeWriter; 
 
     //initialize the writer
-    public CSVWriters(String filename) throws FileNotFoundException {
-        writer = new PrintWriter(filename);
+    public CSVWriters(String fullTimeFilename , String partTimeFilename ) throws FileNotFoundException {
+        fullTimeWriter = new PrintWriter(fullTimeFilename);
+        partTimeWriter = new PrintWriter(partTimeFilename);
     }
 
     // write the headers of the columns of the CSV file
     public void writeHeaderFullTimeEmployee() {
-        writer.println("Name, Id, Job Title, PPS Number, Email, Address, Phone Number, Age, Medical Card Holder, Health Insurance Holder, Status, Tax Credits, Password, Number of Household Incomes, Household Higher Earner, Unions, Health Plan Name, Health Plan Type, Salary Scale Point, Department, Salary, Years At Top Of Scale, Professional Category");
+        fullTimeWriter.println("Name, Id, Job Title, PPS Number, Email, Address, Phone Number, Age, Medical Card Holder, Health Insurance Holder, Status, Tax Credits, Password, Number of Household Incomes, Household Higher Earner, Unions, Health Plan Name, Health Plan Type, Salary Scale Point, Department, Salary, Years At Top Of Scale, Professional Category");
     }
     
    public void writeHeaderPartTimeEmployee() {
-    	writer.println("Name, Id, Job Title, PPS Number, Email, Address, Phone Number, Age, Medical Card Holder , Health Insurance Holder, Status, Tax Credits, Password, Number of Household Incomes, Household Higher Earner, Unions, Health Plan Name, Health Plan Type, Hourly Rate Of Pay, Pay Claim Submitted, Date Pay Claim Form Submitted, Hours Worked This Pay Period"); 
+    	partTimeWriter.println("Name, Id, Job Title, PPS Number, Email, Address, Phone Number, Age, Medical Card Holder , Health Insurance Holder, Status, Tax Credits, Password, Number of Household Incomes, Household Higher Earner, Unions, Health Plan Name, Health Plan Type, Hourly Rate Of Pay, Pay Claim Submitted, Date Pay Claim Form Submitted, Hours Worked This Pay Period"); 
     }
   
 
@@ -50,7 +52,7 @@ public class CSVWriters {
 	                
 	            );
 	            
-        writer.println(row);
+        fullTimeWriter.println(row);
 		    } 
     
     	public void writeEmployeePartTimeEmployee(Employee employee) {
@@ -81,22 +83,26 @@ public class CSVWriters {
 		            partTimeEmployee.getHoursWorkedThisPayPeriod()    // Hours Worked This Pay Period
 		        );
 
-		        writer.println(row);
+		        partTimeWriter.println(row);
 		    }
+    	private void writeHeaders() {
+            fullTimeWriter.println("Name, Id, Job Title, PPS Number, Email, Address, Phone Number, Age, Medical Card Holder, Health Insurance Holder, Status, Tax Credits, Password, Number of Household Incomes, Household Higher Earner, Unions, Health Plan Name, Health Plan Type, Salary Scale Point, Department, Salary, Years At Top Of Scale, Professional Category");
+            partTimeWriter.println("Name, Id, Job Title, PPS Number, Email, Address, Phone Number, Age, Medical Card Holder, Health Insurance Holder, Status, Tax Credits, Password, Number of Household Incomes, Household Higher Earner, Unions, Health Plan Name, Health Plan Type, Hourly Rate Of Pay, Pay Claim Submitted, Date Pay Claim Form Submitted, Hours Worked This Pay Period");
+        }
  
 
     // Method to write all employees to the CSV file
     public void writeEmployeesToCSV(ArrayList<Employee> employees) {
+    		writeHeaders(); 
 			for (Employee employeeInfo : employees) {
 				if(employeeInfo instanceof FullTimeEmployee) {
-					writeHeaderFullTimeEmployee(); 
 					writeEmployeeFullEmployee(employeeInfo); 
 				}else {
-					writeHeaderPartTimeEmployee(); 
 					writeEmployeePartTimeEmployee(employeeInfo);
 				    }
 				
 			}
-        writer.close(); // Close the writer after writing
+        fullTimeWriter.close(); 
+        partTimeWriter.close(); 
     }
 }
