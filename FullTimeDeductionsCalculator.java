@@ -227,9 +227,15 @@ public class FullTimeDeductionsCalculator {
     }
 
     public double calculateNetTax(int employeeID) {
-       return setNetTax(calculateGrossTax(employeeID)-calculateTaxRelief(employeeID));
+    	totalNetTax=calculateGrossTax(employeeID)-calculateTaxRelief(employeeID); 
+        setNetTax(totalNetTax);
+        return totalNetTax; 
+    }
+    public double getNetTax() {
+    	return totalNetTax; 
     }
 
+    //
     public void setUnionFees(double totalUnionFeesPerMonth) {
         this.totalUnionFeesPerMonth=totalUnionFeesPerMonth;
     }
