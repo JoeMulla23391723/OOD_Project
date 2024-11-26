@@ -15,12 +15,11 @@ public class FullTimeEmployee extends Employee {
         this.professionalCategory = employeeDetails[20];
     }
 
-    public FullTimeEmployee(String name, int id, String jobTitle, String pps, String email, String address, String phoneNum, int age, boolean medicalCard, boolean healthInsurance, String status, String[] taxCredits, String password, int numIncomes, boolean higherEarner, String[] unions, String healthPlan, String healthPlanType, String salaryScalePoint, String department, int salary, int yearsAtTopOfScale, String professionalCategory) {
+    public FullTimeEmployee(String name, int id, String jobTitle, String pps, String email, String address, String phoneNum, int age, boolean medicalCard, boolean healthInsurance, String status, String[] taxCredits, String password, int numIncomes, boolean higherEarner, String[] unions, String healthPlan, String healthPlanType, String salaryScalePoint, String department, int salary) {
         super(name, id, jobTitle, pps, email, address, phoneNum, age, medicalCard, healthInsurance, status, taxCredits, password, numIncomes, higherEarner, unions, healthPlan, healthPlanType);
         this.salaryScalePoint = salaryScalePoint;
         this.department = department;
         this.salary = salary;
-        this.professionalCategory = professionalCategory;
     }
 
     // Getter and Setter for salaryScalePoint
@@ -34,14 +33,14 @@ public class FullTimeEmployee extends Employee {
     }
 
     // Getter and Setter for office
-    public String getOffice() {
+    public String getDepartment() {
         return department;
     }
 
 
 
-    public void setOffice(String office) {
-        this.department = office;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     // Getter and Setter for salary
@@ -55,13 +54,6 @@ public class FullTimeEmployee extends Employee {
     }
 
 
-    // Getter and Setter for professionalCategory
-    public String getProfessionalCategory() {
-        return professionalCategory;
-    }
-
-    public void setProfessionalCategory(String professionalCategory) {
-        this.professionalCategory = professionalCategory;
-    }
+    
 
 }
