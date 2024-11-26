@@ -2,10 +2,7 @@
 import java.util.HashMap;
 
 public class Payscale {
-
-    //Data fields
-
-    //HashMap for each department/faculty that stores
+    // HashMap stores each salary scale paired with the key of the related department
     private HashMap<String, int[]> presidents = new HashMap<String, int[]>();
     private HashMap<String, int[]> academic = new HashMap<String, int[]>();
     private HashMap<String, int[]> administrative = new HashMap<String, int[]>();
@@ -21,24 +18,24 @@ public class Payscale {
     private HashMap<String, int[]> researchers = new HashMap<String, int[]>();
 
 
-    //All professions have a 'level' - the highest level of promotion in the UL professions is 18
+    // All professions have a 'promotion level' - the highest level of promotion in the UL professions is 18
     private static int[] promotionLevels = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
 
 
+    // No argument constructor for a payscale object
     public Payscale() {
-        //Auto-generated constructor stub
     }
 
-    //initialise all pay scales for 'Presednital' faculty
+    // Methods to initialise arrays for payscales by faculty
 
-    public void createPresedentialPayscales() {
+    // Initialise all pay scales for 'Presedenital' faculty
+    public void setPresedentialPayscales() {
         presidents.put("president", new int[] {240716});
         presidents.put("vice_president", new int[] {184171});
     }
 
     //Initialise all pay scales for 'Academic' faculty
-
-    public void createAcademicPayscales() {
+    public void setAcademicPayscales() {
         academic.put("full_professor", new int[] {140068, 148055, 156042, 164028, 172016, 177078});
         academic.put("professor", new int[]{101447, 108276, 115107, 121935, 128770, 135598});
         academic.put("associate_professor_a", new int[] {87548, 91018, 94492, 97988, 101461, 104948, 108430, 111916, 115395});
@@ -47,9 +44,8 @@ public class Payscale {
         academic.put("teaching_assistant", new int[] {37010, 40061});
     }
 
-    //To save time, the remaining were created using chatGPT
-
-    public void createtAdministrativePayscales() {
+    //Initialise all pay scales for 'Administrative' faculty
+    public void settAdministrativePayscales() {
         administrative.put("senior_administrative_officer_iii", new int[] {106800, 113990, 121181, 128369, 135565, 142758});
         administrative.put("senior_administrative_officer_ii", new int[] {94941, 98703, 102487, 106270, 110030, 113810, 117589, 121368, 125140});
         administrative.put("senior_administrative_officer_i", new int[] {67132, 69712, 72480, 75725, 79088, 82103, 86389, 90697, 95004, 99396, 103583, 107875});
@@ -59,14 +55,16 @@ public class Payscale {
         administrative.put("administrator", new int[] {26572, 27495, 28629, 29397, 30060, 30830, 31616, 32491, 33224, 34378, 35541, 36715, 37403, 38396, 39212, 39926, 40912, 41892});
     }
 
-    public void createEducationProcurementServicesPayscales() {
+    //Initialise all pay scales for 'EPS' faculty
+    public void setEducationProcurementServicesPayscales() {
         educationProcurementServices.put("portfolio_manager", new int[] {86389, 90698, 95005, 99396, 103583, 107874});
         educationProcurementServices.put("category_manager", new int[] {67131, 69712, 72480, 75725, 79087, 82103, 86389, 90698});
         educationProcurementServices.put("category_specialist_higher", new int[] {58656, 60174, 61704, 63240, 64775, 66318, 68510, 72779});
         educationProcurementServices.put("category_specialist", new int[] {44752, 47047, 49360, 51269, 53219, 55306, 57462, 59558});
     }
 
-    public void createLibraryPayscales() {
+    //Initialise all pay scales for 'Library' faculty
+    public void setLibraryPayscales() {
         library.put("sub_librarian", new int[] {64830, 68413, 71505, 74734, 77824, 80106, 83065, 86613, 90308, 93715, 97127, 100531, 102234, 104052, 106850});
         library.put("assistant_librarian_2", new int[] {58657, 60174, 61704, 63240, 64776, 66317, 68510, 72779, 77291, 79691, 83397});
         library.put("assistant_librarian_1", new int[] {44751, 47050, 49364, 51269, 53605, 55126, 56632, 57745, 59104, 60468, 61415, 62371, 64409, 66805, 69293});
@@ -75,7 +73,8 @@ public class Payscale {
         library.put("library_attendant", new int[] {33403, 34054, 36605, 36966, 36989, 37352, 37141, 38072, 38428, 38443, 38970, 39512, 40039, 40230});
     }
 
-    public void createInformationTechnologyPayscales() {
+    //Initialise all pay scales for 'IT' faculty
+    public void setInformationTechnologyPayscales() {
         informationTechnology.put("analyst_programmer_3", new int[] {67132, 79088, 82103, 86389, 90697, 95004, 99396, 103583, 107875});
         informationTechnology.put("analyst_programmer_2", new int[] {53677, 55287, 56903, 58501, 60116, 61717, 64375, 66805, 69293});
         informationTechnology.put("analyst_programmer_1", new int[] {42012, 44629, 46172, 47611, 49079, 50543, 52039, 53562, 56116, 58164});
@@ -86,7 +85,8 @@ public class Payscale {
     }
 
 
-    public void createTechncialPayscales() {
+    //Initialise all pay scales for 'Technical' faculty
+    public void setTechncialPayscales() {
         technical.put("chief_technical_officer", new int[] {64838, 67536, 70205, 72494, 75821, 78621});
         technical.put("technical_officer", new int[] {39828, 41606, 43745, 45033, 46408, 49325, 51251, 53228, 55376, 57459});
         technical.put("senior_technical_officer", new int[] {60654, 62799, 65107, 67470, 69827, 71290});
@@ -94,8 +94,8 @@ public class Payscale {
         technical.put("lab_attendant", new int[] {33403, 34543, 36604, 36966, 36989, 37352, 37171, 38072, 38429});
     }
 
-
-    public void createServiceStaffPayscales() {
+    //Initialise all pay scales for 'Service Staff' faculty
+    public void setServiceStaffPayscales() {
         serviceStaff.put("sen_porter_attendant", new int[] {41472, 41678, 41873, 41984, 42103, 42213, 42325, 42445, 42563, 42689, 42813, 42936, 43069});
         serviceStaff.put("porter_attendant", new int[] {36456, 37227, 39454, 39644, 39821, 39919, 40032, 40032, 40032, 40032, 40099, 40214, 40327, 40440, 40552});
         serviceStaff.put("grounds_supervisor", new int[] {40712, 40895, 41086, 41188, 41295, 41402, 41498, 41609, 41720, 41828, 41944, 42060, 42165});
@@ -108,20 +108,23 @@ public class Payscale {
         serviceStaff.put("grounds_foreperson", new int[] {49333, 50369, 51204, 52137, 53117, 54078});
     }
 
-    public void createTeachersPayscales() {
+    //Initialise all pay scales for 'Teachers' faculty
+    public void setTeachersPayscales() {
         teachers.put("teaching_fellow", new int[] {62069, 73092, 77007, 79703, 83634, 87605, 91562, 95514, 99471});
         teachers.put("university_teacher", new int[] {46955, 49543, 51676, 53644, 55689, 57323, 58990, 60654, 62314, 63965});
         teachers.put("associate_teacher", new int[] {37008, 39126, 40060, 41945, 43130, 44464, 45716, 46978, 47948, 50419});
     }
 
-    public void createClinicalPayscales() {
+    //Initialise all pay scales for 'Clinical' faculty
+    public void setClinicalPayscales() {
         clinical.put("regional_supervisors", new int[] {62038});
         clinical.put("regional_placement_facilitator", new int[] {63360, 64724, 66076, 67430, 68853, 70352, 71848, 73048});
         clinical.put("clinical_tutor", new int[] {66452, 69009, 71509, 73344, 75794, 78252});
         clinical.put("clinical_fellow", new int[] {74499, 76258, 78804, 81095, 84824, 88562, 92294});
     }
 
-    public void createUlacPayscales() {
+    //Initialise all pay scales for 'ULAC' faculty
+    public void setUlacPayscales() {
         ulac.put("assistant_senior_instructor", new int[] {31099});
         ulac.put("lead_instructor", new int[] {29370});
         ulac.put("multi_activity_instructor_grade1", new int[] {27639, 25334});
@@ -129,11 +132,13 @@ public class Payscale {
         ulac.put("assistant_instructor", new int[] {25576, 23363});
     }
 
-    public void createCoopPayscales(){
+    //Initialise all pay scales for 'Co-op' faculty
+    public void setCoopPayscales(){
         coop.put("coop_student", new int[] {25306, 25350});
     }
 
-    public void createResearchersPayscales(){
+    //Initialise all pay scales for 'Researchers' faculty
+    public void setResearchersPayscales(){
         researchers.put("research_assistant", new int[] {31962, 32782, 33203, 34062, 34945, 35856, 36796, 37419, 38379, 39188, 39847, 40880, 41943});
         researchers.put("post_doctoral_researcher_pd1", new int[] {44847, 45441, 47412, 48671, 49968, 51313});
         researchers.put("post_doctoral_researcher_pd2", new int[] {52715, 54198, 55740, 57332});
@@ -142,77 +147,56 @@ public class Payscale {
     }
 
 
-    // Use the index position of the employee ID to  find their faculty and profession
+    // Method to find the payscale that corresponds to that employee based on their faculty and profession
     //Find out what pay scale the employee is operating on based on by their profession - They pay scales are stored in hash maps for each faculty/department
     public int[] getPayscaleByProfession (int index) {
         int[] payscale = new int[0];
         String profession = Employees.getEmployees().get(index).getJobTitle();
-        String faculty = Employees.getEmployees().get(index).getOffice();
+        String faculty = Employees.getEmployees().get(index).getDepartment();
+        
+        switch(faculty){
+            case("presidents"):
+                payscale = presidents.get(profession);
+                break;
+            case("academic"):
+                payscale = academic.get(profession);
+                break;
+            case("administrative"):
+                payscale = administrative.get(profession);
+                break;
+            case("education_procurement_services"):
+                payscale = educationProcurementServices.get(profession);
+                break;
+            case("library"):
+                payscale = library.get(profession);
+                break;
+            case("information_technology"):
+                payscale = informationTechnology.get(profession);
+                break;
+            case("technical"):
+                payscale = technical.get(profession);
+                break;
+            case("service_staff"):
+                payscale = serviceStaff.get(profession);
+                break;
+            case("teachers"):
+                payscale = teachers.get(profession);
+                break;
+            case("clinical"):
+                payscale = clinical.get(profession);
+                break;
+            case("ulac"):
+                payscale = ulac.get(profession);
+                break;
+            case("coop"):
+                payscale = coop.get(profession);
+                break;
+            case("researchers"):
+                payscale = researchers.get(profession);
+                break;
 
-
-        //checks which faculty the employee is a part of, then uses its profession to draw the related pay scale array from the corresponding faculty hash map
-        if(faculty.equals("presedent")) {
-            payscale = presidents.get(profession);
         }
-
-        if(faculty.equals("academic")) {
-            payscale = academic.get(profession);
-        }
-
-        if(faculty.equals("administrative")) {
-            payscale = administrative.get(profession);
-        }
-
-        if(faculty.equals("education_procurement_services")) {
-            payscale = educationProcurementServices.get(profession);
-        }
-
-        if(faculty.equals("library")) {
-            payscale = library.get(profession);
-        }
-        if(faculty.equals("information_technology")) {
-            payscale = informationTechnology.get(profession);
-        }
-
-        if(faculty.equals("technical")) {
-            payscale = technical.get(profession);
-        }
-
-        if(faculty.equals("service_staff")) {
-            payscale = serviceStaff.get(profession);
-        }
-
-        if(faculty.equals("teachers")) {
-            payscale = teachers.get(profession);
-        }
-
-        if(faculty.equals("clinical")) {
-            payscale = clinical.get(profession);
-        }
-
-        if(faculty.equals("ulac")) {
-            payscale = ulac.get(profession);
-        }
-
-        if(faculty.equals("coop")) {
-            payscale = coop.get(profession);
-        }
-
-        if(faculty.equals("researchers")) {
-            payscale = researchers.get(profession);
-        }
-
         return payscale;
-    }
-
-    //Get the employee's salary without any deductions applied - takes the array found in the getPayscaleByProfession method
-
-    public int getSalaryWithoutDeductions(int[] payscale, int level) {
-        int i = promotionLevels.length-1;
-        while(level<promotionLevels[i]) {
-            i--;
-        }
-        return payscale [i];
     }
 }
 
