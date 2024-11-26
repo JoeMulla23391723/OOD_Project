@@ -13,17 +13,17 @@ public class CSVWriters {
     }
 
     // write the headers of the columns of the CSV file
-    public void writeHeader(Employee employee) {
-    	if(employee instanceof FullTimeEmployee) {
+    public void writeHeaderFullTimeEmployee() {
         writer.println("Name, Id, Job Title, PPS Number, Email, Address, Phone Number, Age, Medical Card Holder, Health Insurance Holder, Status, Tax Credits, Password, Number of Household Incomes, Household Higher Earner, Unions, Health Plan Name, Health Plan Type, Salary Scale Point, Department, Salary, Years At Top Of Scale, Professional Category");
-    }else {  //headers for a part time employee
+    }
+    
+   public void writeHeaderPartTimeEmployee() {
     	writer.println("Name, Id, Job Title, PPS Number, Email, Address, Phone Number, Age, Medical Card Holder , Health Insurance Holder, Status, Tax Credits, Password, Number of Household Incomes, Household Higher Earner, Unions, Health Plan Name, Health Plan Type, Hourly Rate Of Pay, Pay Claim Submitted, Date Pay Claim Form Submitted, Hours Worked This Pay Period"); 
     }
-    }
+  
 
     // Method to write data for a single employee
-    public void writeEmployee(Employee employee) {
-    	if(employee instanceof FullTimeEmployee) {
+    public void writeEmployeeFullEmployee(Employee employee) {
     		FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) employee; 
 	        String row = String.format("%s,%d,%s,%s,%s,%s,%s,%d,%b,%b,%s,%s,%s,%d,%b,%s,%s,%s,%s,%s,%.2f,%d,%s",
 	                fullTimeEmployee.getName(),                     // Name
@@ -51,9 +51,10 @@ public class CSVWriters {
 	            );
 	            
         writer.println(row);
-		    } else {
+		    } 
+    
+    	public void writeEmployeePartTimeEmployee(Employee employee) {
 		    	PartTimeEmployee partTimeEmployee = (PartTimeEmployee) employee;
-
 		        String row = String.format(
 		            "%s,%d,%s,%s,%s,%s,%s,%d,%b,%b,%s,%s,%s,%d,%b,%s,%s,%s,%.2f,%b,%s,%.2f",
 		            partTimeEmployee.getName(),                       // Name
@@ -82,14 +83,20 @@ public class CSVWriters {
 
 		        writer.println(row);
 		    }
-    }
+ 
 
     // Method to write all employees to the CSV file
-    public void writeEmployeesToCSV(ArrayList<Employee> employees, Employee employee) {
-		writeHeader(employee); // Write the header first
-        for (Employee employeeInfo : employees) {
-            writeEmployee(employee); // Write each employee's details
-        }
+    public void writeEmployeesToCSV(ArrayList<Employee> employees) {
+			for (Employee employeeInfo : employees) {
+				if(employeeInfo instanceof FullTimeEmployee) {
+					writeHeaderFullTimeEmployee(); 
+					writeEmployeeFullEmployee(employeeInfo); 
+				}else {
+					writeHeaderPartTimeEmployee(); 
+					writeEmployeePartTimeEmployee(employeeInfo);
+				    }
+				
+			}
         writer.close(); // Close the writer after writing
     }
 }
