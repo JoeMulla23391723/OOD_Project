@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Employees {
     // ArrayList of type Employee that will contain Employee objects
     private static ArrayList<Employee> employees;
+    private static ArrayList<Promotions> promotions;
+
 
     // Necessary data fields
     private double netPayPerMonth;
@@ -129,24 +131,39 @@ public class Employees {
         fullTimeEmployee.setSalaryScalePoint("0");
     }
 
-    // Method to change employee salary point
-    public void incrementSalaryScalePoint(int employeeID, String salaryScalePoint) {
-        Employee fullTime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
-        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fullTime;
-        fullTimeEmployee.setSalaryScalePoint(salaryScalePoint);
+    // Method to check if an employee is at the top of their salary scale
+    public boolean isEmployeeAtTop(){
+        boolean value = false;
+        return value;
     }
 
-    // Method to check if an employee is at the top of their salary scale
+    // Method to change employee salary point (Promotes employee)
+    public void incrementSalaryScalePoint(int employeeID, String salaryScalePoint) throws IllegalArgumentException {
+        //Only do this if emplpoyee is not at the top of their salary scale
+        if (!isEmployeeAtTop()) {
+            Employee fulltime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
+            FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
+            fullTimeEmployee.setSalaryScalePoint(salaryScalePoint);
+            promotions.add(new Promotions(employeeID, LocalDate.now()));
+        }
+        else{
+            throw new IllegalArgumentException("Employee cannot be promoted further");
+        }
+    }
 
-    // Method to promote an employee
+    // Method to promote an employee every october
     public void promoteEmployeeBasedOnTime(int employeeID, String salaryScalePoint) throws IllegalArgumentException {
-        Employee fullTime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
-        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fullTime;
+        Employee fulltime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
+        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
         int currentMonth = LocalDate.now().getMonthValue();
         if (currentMonth >= 10) {
+            //Only promote if they haven't already been promoted that year
+            //Only promote if they haven't reached the top of their salary scale
             if () {
                 incrementSalaryScalePoint(employeeID, salaryScalePoint);
+
             }
+            promotions.add(new Promotions(employeeID,LocalDate.now()));
         }
     }
 
@@ -161,11 +178,14 @@ public class Employees {
     public LocalDate getSubmissionDeadline() {
         return submissionDeadLine;
     }
+    // Method to check if an employee has been promoted this year
+
+
 
     // Method to check if an employee has submitted pay-claim form by
     public boolean checkIfEmployeeEligibleForPayment(int employeeID, LocalDate submissionDeadline) {
-        Employee partTime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
-        PartTimeEmployee partTimeEmployee = (PartTimeEmployee) partTime;
+        Employee parttime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
+        PartTimeEmployee partTimeEmployee = (PartTimeEmployee) parttime;
         boolean eligibility = false;
         //Need to figure out submission deadline
         if (partTimeEmployee.getDatePayClaimSubmitted().isBefore(submissionDeadline) || partTimeEmployee.getDatePayClaimSubmitted().equals(submissionDeadline)) {
@@ -174,10 +194,10 @@ public class Employees {
         return eligibility;
     }
 
-    // Method to calculate monthly net pay of a part time employee
+    // Method to calculate monthly net pay of a part-time employee
     public double calculatePartTimeNetPay(int employeeID, LocalDate submissionDeadline) {
         if (checkIfEmployeeEligibleForPayment(employeeID, submissionDeadline)) {
-            Employee employee = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
+            Employee employee = Employees.getEmployeeFromIndex(employeeID);
             if (employee instanceof PartTimeEmployee) {
                 PartTimeEmployee partTimeEmployee = (PartTimeEmployee) employee;
                 PartTimeDeductionsCalculator deductions = new PartTimeDeductionsCalculator();
