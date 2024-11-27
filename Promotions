@@ -1,0 +1,14 @@
+import java.time.LocalDate;
+import java.util.*;
+import java.time.LocalDateTime;
+
+    public class Promotions {
+        private int employeeID;
+        private LocalDate now = LocalDate.now();
+
+        public Promotions(int employeeID, LocalDate now) {
+            this.employeeID = employeeID;
+            this.now  = LocalDate.now();
+        }
+    }
+
