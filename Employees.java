@@ -193,7 +193,7 @@ public class Employees {
         }
         return eligibility;
     }
-
+    /* Joe Editing this out because I have it deleted. saving just in case
     // Method to calculate monthly net pay of a part-time employee
     public double calculatePartTimeNetPay(int employeeID, LocalDate submissionDeadline) {
         if (checkIfEmployeeEligibleForPayment(employeeID, submissionDeadline)) {
@@ -215,6 +215,7 @@ public class Employees {
         }
         return netPayPerMonth;
     }
+    */
 }
 
 
