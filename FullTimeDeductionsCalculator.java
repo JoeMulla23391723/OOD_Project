@@ -218,7 +218,7 @@ public class FullTimeDeductionsCalculator {
         return totalTaxReliefPerMonth;
     }
 
-    public double calculateNettTax(int employeeID) {
+    public double calculateNetTax(int employeeID) {
         return calculateGrossTax(employeeID)-calculateTaxRelief(employeeID);
     }
 
