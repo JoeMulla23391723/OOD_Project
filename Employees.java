@@ -16,9 +16,9 @@ public class Employees {
     public void readFullTimeEmployees(String fileName) throws FileNotFoundException {
         CSVReaders reader = new CSVReaders(fileName);
         ArrayList<FullTimeEmployee> employeeDetails = reader.readFullTimeEmployees();
-            for (FullTimeEmployee employee : employeeDetails) {
-                employees.add(employee);
-            }
+        for (FullTimeEmployee employee : employeeDetails) {
+            employees.add(employee);
+        }
     }
 
     // Method to read in part-time employees into the ArrayList from CSV file
@@ -41,12 +41,12 @@ public class Employees {
     }
 
     // Method to add a new full-time employee
-    public void addFullTimeEmployee(FullTimeEmployee ft){
+    public void addFullTimeEmployee(FullTimeEmployee ft) {
         employees.add(ft);
     }
 
     // Method to add a new part-time employee
-    public void addPartTimeEmployee(PartTimeEmployee pt){
+    public void addPartTimeEmployee(PartTimeEmployee pt) {
         employees.add(pt);
     }
 
@@ -63,7 +63,7 @@ public class Employees {
     }
 
     //Method to get the index position of an employee in the employees array base on index position
-    public static int getIndexOfEmployeeID(int employeeID) throws IllegalArgumentException{
+    public static int getIndexOfEmployeeID(int employeeID) throws IllegalArgumentException {
         boolean here = false;
         for (Employee employee : getEmployees()) {
             if (employee.getId() == employeeID) {
@@ -77,50 +77,27 @@ public class Employees {
                     index = i;
                 }
             }
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Employee does not exist in the system");
         }
         return index;
     }
 
     // Method to get Employee object using index position in the array
-    public static Employee getEmployeeFromIndex(int employeeID){
-       Employee e = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
+    public static Employee getEmployeeFromIndex(int employeeID) {
+        Employee e = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
         return e;
     }
 
     // Full-time employee specific methods
 
     // Method to get the promotion level of a full-time employee, given its index position
-    public int getPromotionLevel(int employeeID) {
+    public static int getPromotionLevel(int employeeID) {
         Employee fulltime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
         FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
         return Integer.parseInt(fullTimeEmployee.getSalaryScalePoint());
     }
 
-    // Method to get the salary of a full-time employee before deductions are applied
-    public double getEmployeeSalaryWithoutDeductions(int employeeID) {
-        int salary = 0;
-        Payscale payscale = new Payscale();
-        int[] salaryScales = payscale.getPayscaleByProfession((getIndexOfEmployeeID(employeeID)));
-        salary = payscale.getSalaryWithoutDeductions(salaryScales, getPromotionLevel(getIndexOfEmployeeID(employeeID)));
-        return salary;
-    }
-
-    // Method to get the salary of a full-time employee after deductions are applied
-    public double calculateFullTimeNetPay(int employeeID) throws IllegalArgumentException {
-        Employee employee = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
-        if (employee instanceof FullTimeEmployee) {
-            FullTimeDeductionsCalculator deductions = new FullTimeDeductionsCalculator();
-            netPayPerMonth = (getEmployeeSalaryWithoutDeductions(employeeID) / 12) - (deductions.calculateUscPaid(employeeID) + deductions.calculatePrsiPaid(employeeID) +
-                    deductions.calculateNetTax(employeeID) + deductions.calculateNetTax(employeeID) + deductions.calculateUnionFees(employeeID) + deductions.calculateHeathInsurance(employeeID));
-        }
-        else{
-            throw new IllegalArgumentException("Employee is not employed on a full-time basis");
-        }
-        return netPayPerMonth;
-    }
 
     // Method to change employee profession based on time served at top of scale and reset salary point to 1
 
@@ -132,7 +109,7 @@ public class Employees {
     }
 
     // Method to check if an employee is at the top of their salary scale
-    public boolean isEmployeeAtTop(){
+    public boolean isEmployeeAtTop() {
         boolean value = false;
         return value;
     }
@@ -145,8 +122,7 @@ public class Employees {
             FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
             fullTimeEmployee.setSalaryScalePoint(salaryScalePoint);
             promotions.add(new Promotions(employeeID, LocalDate.now()));
-        }
-        else{
+        } else {
             throw new IllegalArgumentException("Employee cannot be promoted further");
         }
     }
@@ -163,7 +139,7 @@ public class Employees {
                 incrementSalaryScalePoint(employeeID, salaryScalePoint);
 
             }
-            promotions.add(new Promotions(employeeID,LocalDate.now()));
+            promotions.add(new Promotions(employeeID, LocalDate.now()));
         }
     }
 
@@ -181,7 +157,6 @@ public class Employees {
     // Method to check if an employee has been promoted this year
 
 
-
     // Method to check if an employee has submitted pay-claim form by
     public boolean checkIfEmployeeEligibleForPayment(int employeeID, LocalDate submissionDeadline) {
         Employee parttime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
@@ -193,29 +168,6 @@ public class Employees {
         }
         return eligibility;
     }
-    /* Joe Editing this out because I have it deleted. saving just in case
-    // Method to calculate monthly net pay of a part-time employee
-    public double calculatePartTimeNetPay(int employeeID, LocalDate submissionDeadline) {
-        if (checkIfEmployeeEligibleForPayment(employeeID, submissionDeadline)) {
-            Employee employee = Employees.getEmployeeFromIndex(employeeID);
-            if (employee instanceof PartTimeEmployee) {
-                PartTimeEmployee partTimeEmployee = (PartTimeEmployee) employee;
-                PartTimeDeductionsCalculator deductions = new PartTimeDeductionsCalculator();
-                double hoursWorked = partTimeEmployee.getHoursWorkedThisPayPeriod();
-                double hourlyRateOfPay = partTimeEmployee.getHourlyRate();
-                double temp = hoursWorked * hourlyRateOfPay;
-                netPayPerMonth = temp - (deductions.calculateUscPaid(employeeID) + deductions.calculatePrsiPaid(employeeID) +
-                        deductions.calculateNetTax(employeeID) + deductions.calculateUnionFees(employeeID)
-                        + deductions.calculateHeathInsuranceCost(employeeID));
-            } else {
-                throw new IllegalArgumentException("Employee is not employed on a part time basis");
-            }
-        } else {
-            throw new IllegalArgumentException("employee is not eligible for pay this period: pay claim form was not submitted");
-        }
-        return netPayPerMonth;
-    }
-    */
 }
 
 
