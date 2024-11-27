@@ -20,7 +20,7 @@ public class Employees {
     }
 
     // Method to read in part-time employees into the ArrayList from CSV file
-    public void readPartTimeEmployees(String fileName) throws FileNotFoundException {
+    public void readPartTimeEmployees(String fileName) throws FileNotFoundException, IllegalArgumentException {
         CSVReaders reader = new CSVReaders(fileName);
         ArrayList<PartTimeEmployee> employeeDetails = reader.readPartTimeEmployees();
         for (PartTimeEmployee employee : employeeDetails) {
@@ -61,17 +61,17 @@ public class Employees {
     }
 
     //Method to get the index position of an employee in the employees array base on index position
-    public int getIndexOfEmployeeID(int employeeID) throws IllegalArgumentException{
+    public static int getIndexOfEmployeeID(int employeeID) throws IllegalArgumentException{
         boolean here = false;
-        for (Employee employee : Employees.getEmployees()) {
+        for (Employee employee : getEmployees()) {
             if (employee.getId() == employeeID) {
                 here = true;
             }
         }
         int index = 0;
         if (here) {
-            for (int i = 0; i < Employees.getEmployees().size(); i++) {
-                if (Employees.getEmployees().get(i).getId() == employeeID) {
+            for (int i = 0; i < getEmployees().size(); i++) {
+                if (getEmployees().get(i).getId() == employeeID) {
                     index = i;
                 }
             }
@@ -80,6 +80,12 @@ public class Employees {
             throw new IllegalArgumentException("Employee does not exist in the system");
         }
         return index;
+    }
+
+    // Method to get Employee object using index position in the array
+    public static Employee getEmployeeFromIndex(int employeeID){
+       Employee e = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
+        return e;
     }
 
     // Full-time employee specific methods
@@ -125,8 +131,8 @@ public class Employees {
 
     // Method to change employee salary point
     public void incrementSalaryScalePoint(int employeeID, String salaryScalePoint) {
-        Employee fulltime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
-        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
+        Employee fullTime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
+        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fullTime;
         fullTimeEmployee.setSalaryScalePoint(salaryScalePoint);
     }
 
@@ -134,8 +140,8 @@ public class Employees {
 
     // Method to promote an employee
     public void promoteEmployeeBasedOnTime(int employeeID, String salaryScalePoint) throws IllegalArgumentException {
-        Employee fulltime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
-        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
+        Employee fullTime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
+        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fullTime;
         int currentMonth = LocalDate.now().getMonthValue();
         if (currentMonth >= 10) {
             if () {
@@ -158,8 +164,8 @@ public class Employees {
 
     // Method to check if an employee has submitted pay-claim form by
     public boolean checkIfEmployeeEligibleForPayment(int employeeID, LocalDate submissionDeadline) {
-        Employee parttime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
-        PartTimeEmployee partTimeEmployee = (PartTimeEmployee) parttime;
+        Employee partTime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
+        PartTimeEmployee partTimeEmployee = (PartTimeEmployee) partTime;
         boolean eligibility = false;
         //Need to figure out submission deadline
         if (partTimeEmployee.getDatePayClaimSubmitted().isBefore(submissionDeadline) || partTimeEmployee.getDatePayClaimSubmitted().equals(submissionDeadline)) {
