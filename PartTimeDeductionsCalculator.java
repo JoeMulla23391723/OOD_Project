@@ -8,32 +8,15 @@ public class PartTimeDeductionsCalculator {
     private double totalTaxRelief; //tax relief
     private double totalTaxReliefPerMonth; //tax relief
     private double totalUnionFees; //unions
-    private double totalNetTax; 
     private double totalUnionFeesPerMonth; //unions
     private double healthInsuranceCost; //health insurance Cost
     private double healthInsuranceCompanyDiscount; //health
     private double healthInsuranceCompanyDiscountRate = 0.15; //health
     private double healthInsuranceCostPerMonth; //health
 
-
-    public int getIndexOfEmployeeID(int employeeID) {
-        boolean here = false;
-        for (Employee employee : Employees.getEmployees()) {
-            if (employee.getId() == employeeID) {
-                here = true;
-            }
-        }
-        int index = 0;
-        if (here) {
-            for (int i = 0; i < Employees.getEmployees().size(); i++) {
-                if (Employees.getEmployees().get(i).getId() == employeeID) {
-                    index = i;
-                }
-            }
-        }
-        return index;
+    // No argument constructor for FullTimeDeductionsCalculator
+    public PartTimeDeductionsCalculator(){
     }
-
 
     //Set and calculate methods for usc
     public void setUscPaid(double uscToPayPerMonth) {
@@ -41,11 +24,11 @@ public class PartTimeDeductionsCalculator {
     }
 
     public double calculateUscPaid(int employeeID) {
-        double hoursWorked = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHoursWorkedThisPayPeriod();
-        double hourlyRateOfPay = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHourlyRate();
-        double age = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getAge();
-        boolean medicalCard = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).hasMedicalCard();
-        double temp = hoursWorked * hourlyRateOfPay;//making a variable because to alter the amount each time
+        Employee partTime = Employees.getEmployeeFromIndex(employeeID);
+        int age = partTime.getAge();
+        boolean medicalCard = partTime.hasMedicalCard();
+        PartTimeEmployee partTimeEmployee = (PartTimeEmployee) partTime;
+        double temp = partTimeEmployee.getHoursWorkedThisPayPeriod()*partTimeEmployee.getHourlyRate();//making a variable because to alter the amount each time
         double uscToPay = 0;
         if (temp < (13000 / 12)) { // can earn up to 13000 without paying USC
             uscToPay = 0;
@@ -109,8 +92,10 @@ public class PartTimeDeductionsCalculator {
     }
 
     public double calculatePrsiPaid(int employeeID) {
-        double hoursWorked = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHoursWorkedThisPayPeriod();
-        double hourlyRateOfPay = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHourlyRate();
+        Employee partTime = Employees.getEmployeeFromIndex(employeeID);
+        PartTimeEmployee partTimeEmployee = (PartTimeEmployee) partTime;
+        double hoursWorked = partTimeEmployee.getHoursWorkedThisPayPeriod();
+        double hourlyRateOfPay = partTimeEmployee.getHourlyRate();
         double temp = ((hoursWorked * hourlyRateOfPay) * 12) / 52;//calculating weekly pay as a temp variable
         double prsiToPayPerWeek = 0;
         double prsiToPayPerYear;
@@ -145,11 +130,13 @@ public class PartTimeDeductionsCalculator {
     }
 
     public double calculateGrossTax(int employeeID) {
-        double hoursWorked = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHoursWorkedThisPayPeriod();
-        double hourlyRateOfPay = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHourlyRate();
-        String status = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getStatus();
-        int numOfIncomes = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getNumIncomes();
-        boolean higherEarner = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).isHigherEarner();
+        Employee partTime = Employees.getEmployeeFromIndex(employeeID);
+        String status = partTime.getStatus();
+        int numOfIncomes = partTime.getNumIncomes();
+        boolean higherEarner = partTime.isHigherEarner();
+        PartTimeEmployee partTimeEmployee = (PartTimeEmployee) partTime;
+        double hoursWorked = partTimeEmployee.getHoursWorkedThisPayPeriod();
+        double hourlyRateOfPay = partTimeEmployee.getHourlyRate();
         double temp = (hoursWorked * hourlyRateOfPay);
         if (status.equals("Single person")) {
             if (temp > (42000 / 12)) {
@@ -203,9 +190,11 @@ public class PartTimeDeductionsCalculator {
     }
 
     public double calculateTaxRelief(int employeeID) { // we need to make an arrayList that allows us to add tax credits
-        double hoursWorked = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHoursWorkedThisPayPeriod();
-        double hourlyRateOfPay = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHourlyRate();
-        String[] taxCredits = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getTaxCredits();
+        Employee partTime = Employees.getEmployeeFromIndex(employeeID);
+        PartTimeEmployee partTimeEmployee = (PartTimeEmployee) partTime;
+        double hoursWorked = partTimeEmployee.getHoursWorkedThisPayPeriod();
+        double hourlyRateOfPay = partTimeEmployee.getHourlyRate();
+        String[] taxCredits = partTimeEmployee.getTaxCredits();
         double temp = (hoursWorked * hourlyRateOfPay);
         for (String typeOfCredit : taxCredits) {
             if (typeOfCredit.equals("Employee Tax Credit")) {
@@ -243,17 +232,9 @@ public class PartTimeDeductionsCalculator {
         totalTaxReliefPerMonth = totalTaxRelief;
         return totalTaxReliefPerMonth;
     }
-    public void setNetTax(double totalNetTax) {
-    	this.totalNetTax = totalNetTax; 
-    }
 
-    public double calculateNetTax(int employeeID) {
-    	totalNetTax = calculateGrossTax(employeeID)-calculateTaxRelief(employeeID);
-    	setNetTax(totalNetTax); 
-        return totalNetTax;   
-    }
-    public double getNetTax() {
-    	return totalNetTax; 
+    public double calculateNettTax(int employeeID) {
+        return calculateGrossTax(employeeID)-calculateTaxRelief(employeeID);
     }
     public void setUnionFees(double totalUnionFeesPerMonth) {
         this.totalUnionFeesPerMonth=totalUnionFeesPerMonth;
@@ -261,9 +242,11 @@ public class PartTimeDeductionsCalculator {
 
     //Set and calculate methods for union fees
     public double calculateUnionFees(int employeeID) {
-        double hoursWorked = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHoursWorkedThisPayPeriod();
-        double hourlyRateOfPay = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHourlyRate();
-        String[] unions = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getUnions();
+        Employee partTime = Employees.getEmployeeFromIndex(employeeID);
+        String[] unions = partTime.getUnions();
+        PartTimeEmployee partTimeEmployee = (PartTimeEmployee) partTime;
+        double hoursWorked = partTimeEmployee.getHoursWorkedThisPayPeriod();
+        double hourlyRateOfPay = partTimeEmployee.getHourlyRate();
         double temp = (hoursWorked * hourlyRateOfPay);
         for (String nameOfUnion: unions) {
             if (nameOfUnion.equals("Unite")) {
@@ -313,9 +296,10 @@ public class PartTimeDeductionsCalculator {
         this.healthInsuranceCostPerMonth=healthInsuranceCostPerMonth;
     }
     public double calculateHeathInsuranceCost(int employeeID) {
-        boolean healthInsurance = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).hasHealthInsurance();
-        String healthPlan = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHealthPlan();
-        String healthPlanType = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHealthPlanType();
+        Employee partTime = Employees.getEmployeeFromIndex(employeeID);
+        boolean healthInsurance = partTime.hasHealthInsurance();
+        String healthPlan = partTime.getHealthPlan();
+        String healthPlanType = partTime.getHealthPlanType();
         if(healthInsurance==true) {
             if(healthPlan == "VHI One Plan 250") {
                 if(healthPlanType=="Single") {
