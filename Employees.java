@@ -114,7 +114,7 @@ public class Employees {
         if (employee instanceof FullTimeEmployee) {
             FullTimeDeductionsCalculator deductions = new FullTimeDeductionsCalculator();
             netPayPerMonth = (getEmployeeSalaryWithoutDeductions(employeeID) / 12) - (deductions.calculateUscPaid(employeeID) + deductions.calculatePrsiPaid(employeeID) +
-                    deductions.calculateNettTax(employeeID) + deductions.calculateNettTax(employeeID) + deductions.calculateUnionFees(employeeID) + deductions.calculateHeathInsurance(employeeID));
+                    deductions.calculateNetTax(employeeID) + deductions.calculateNetTax(employeeID) + deductions.calculateUnionFees(employeeID) + deductions.calculateHeathInsurance(employeeID));
         }
         else{
             throw new IllegalArgumentException("Employee is not employed on a full-time basis");
@@ -205,7 +205,7 @@ public class Employees {
                 double hourlyRateOfPay = partTimeEmployee.getHourlyRate();
                 double temp = hoursWorked * hourlyRateOfPay;
                 netPayPerMonth = temp - (deductions.calculateUscPaid(employeeID) + deductions.calculatePrsiPaid(employeeID) +
-                        deductions.calculateNettTax(employeeID) + deductions.calculateUnionFees(employeeID)
+                        deductions.calculateNetTax(employeeID) + deductions.calculateUnionFees(employeeID)
                         + deductions.calculateHeathInsuranceCost(employeeID));
             } else {
                 throw new IllegalArgumentException("Employee is not employed on a part time basis");
