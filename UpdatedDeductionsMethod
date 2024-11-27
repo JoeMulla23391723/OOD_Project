@@ -1,0 +1,49 @@
+avoids having a duplicate method 
+
+
+public double calculateUscPaid(int employeeID) {
+        Employee fulltime = Employees.getEmployeeFromIndex(employeeID);
+        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
+        double temp = fullTimeEmployee.getSalary(); //making a variable because to alter the amount each time
+        double uscToPay=0;
+        double age = fullTimeEmployee.getAge();
+        boolean medicalCard= fullTimeEmployee.hasMedicalCard();
+        if (temp<13000) { // can earn up to 13000 without paying USC
+            uscToPay=0;
+            System.out.println("Doesn't reach the threshold to pay USC.");
+        }else if(age>=70 && temp<60000) { // Reduced rate for over 70s that earn less than 60,000
+            if(temp>12012) { // checking if the balance is above 12012
+                uscToPay= (temp-12012) * 0.02;  // making (balance x 2%) the initial amount of USC to be paid
+                temp=12012;  // changing the value of the temp grossPay for the next band rate
+            }
+            if(temp<=12012) { //
+                uscToPay = uscToPay + (temp * 0.005);
+            }
+        }else if(medicalCard==true && temp<60000) {
+            if(temp>12012) {
+                uscToPay= (temp-12012) * 0.02;
+                temp=12012;
+            }
+            if(temp<=12012) {
+                uscToPay = uscToPay + (temp * 0.005);
+            }
+        }else{
+            if(temp>70044) {
+                uscToPay=(temp-70044)*0.08;
+                temp=70044;
+            }
+            if(temp>25760) {
+                uscToPay= uscToPay + ((temp-25760) * 0.04);
+                temp=25760;
+            }
+            if(temp>12012) {
+                uscToPay= uscToPay + ((temp-12012) * 0.02);
+                temp=12012;
+            }
+            if(temp<=12012) {
+                uscToPay = uscToPay + (temp * 0.005);
+            }
+        }
+        uscToPayPerMonth= uscToPay/12;
+        return uscToPayPerMonth;
+    } 
