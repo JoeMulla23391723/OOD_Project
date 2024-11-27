@@ -6,40 +6,28 @@ public class FullTimeDeductionsCalculator {
     private double grossTax; //income tax
     private double grossTaxPerMonth; //income tax
     private double totalTaxRelief; //tax relief
-    private double totalNetTax; 
     private double totalUnionFees; //unions
     private double totalUnionFeesPerMonth; //unions
     private double healthInsuranceCost; //health insurance Cost
     private double healthInsuranceCostPerMonth; //health
 
-
-    public int getIndexOfEmployeeID (int employeeID) {
-        boolean here = false;
-        for(Employee employee: Employees.getEmployees()) {
-            if(employee.getId() == employeeID){
-                here = true;
-            }
-        }
-        int index = 0;
-        if(here) {
-            for(int i = 0; i < Employees.getEmployees().size(); i++) {
-                if(Employees.getEmployees().get(i).getId() == employeeID) {
-                    index = i;
-                }
-            }
-        }
-        return index;
+    // No argument constructor for FullTimeDeductionsCalculator
+    public FullTimeDeductionsCalculator(){
     }
 
-    //Calculate and set methods for USC deductions
+    // Calculate and set methods for USC deductions
     public void setUscPaid(double uscToPayPerMonth) {
         this.uscToPayPerMonth=uscToPayPerMonth;
     }
+
+
     public double calculateUscPaid(int employeeID) {
-        double temp = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getSalary();//making a variable because to alter the amount each time
+        Employee fullTime = Employees.getEmployeeFromIndex(employeeID);
+        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fullTime;
+        double temp = fullTimeEmployee.getSalary(); //making a variable because to alter the amount each time
         double uscToPay=0;
-        double age = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getAge();
-        boolean medicalCard= Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).hasMedicalCard();
+        double age = fullTimeEmployee.getAge();
+        boolean medicalCard= fullTimeEmployee.hasMedicalCard();
         if (temp<13000) { // can earn up to 13000 without paying USC
             uscToPay=0;
             System.out.println("Doesn't reach the threshold to pay USC.");
@@ -98,7 +86,9 @@ public class FullTimeDeductionsCalculator {
         this.prsiToPayPerMonth= prsiToPayPerMonth;
     }
     public double calculatePrsiPaid(int employeeID) {
-        double temp = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getSalary();//calculating weekly pay as a temp variable
+        Employee fullTime = Employees.getEmployeeFromIndex(employeeID);
+        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fullTime;
+        double temp = fullTimeEmployee.getSalary();//calculating weekly pay as a temp variable
         double prsiToPayPerWeek=0;
         double prsiToPayPerYear;
         if(temp<=352){
@@ -133,10 +123,12 @@ public class FullTimeDeductionsCalculator {
     }
 
     public double calculateGrossTax(int employeeID) {
-        double temp = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getSalary();
-        String status = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getStatus();
-        int numOfIncomes = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getNumIncomes();
-        boolean higherEarner = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).isHigherEarner();
+        Employee fullTime = Employees.getEmployeeFromIndex(employeeID);
+        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fullTime;
+        double temp = fullTimeEmployee.getSalary();
+        String status = fullTimeEmployee.getStatus();
+        int numOfIncomes = fullTimeEmployee.getNumIncomes();
+        boolean higherEarner = fullTimeEmployee.isHigherEarner();
         if(status.equals("Single person")) {
             if(temp>42000) {
                 grossTax=(temp-42000)*0.4;
@@ -182,9 +174,12 @@ public class FullTimeDeductionsCalculator {
     public void setTaxRelief(double totalTaxRelief) {
         this.totalTaxRelief=totalTaxRelief;
     }
-    public double calculateTaxRelief(int employeeID) { // we need to make an arrayList that allows us to add tax credits
-        double temp = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getSalary();
-        String[] taxCredits = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getTaxCredits();
+    public double calculateTaxRelief(int employeeID) {
+        Employee fullTime = Employees.getEmployeeFromIndex(employeeID);
+        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fullTime;
+        // we need to make an arrayList that allows us to add tax credits
+        double temp = fullTimeEmployee.getSalary();
+        String[] taxCredits = fullTimeEmployee.getTaxCredits();
         for (String typeOfCredit :  taxCredits){
             if (typeOfCredit.equals("Employee Tax Credit")) {
                 if(temp<9375) {
@@ -222,17 +217,9 @@ public class FullTimeDeductionsCalculator {
         double totalTaxReliefPerMonth = totalTaxRelief / 12;
         return totalTaxReliefPerMonth;
     }
-    public void setNetTax(double totalNetTax) {
-    	this.totalNetTax= totalNetTax; 
-    }
 
-    public double calculateNetTax(int employeeID) {
-    	totalNetTax=calculateGrossTax(employeeID)-calculateTaxRelief(employeeID); 
-        setNetTax(totalNetTax);
-        return totalNetTax; 
-    }
-    public double getNetTax() {
-    	return totalNetTax; 
+    public double calculateNettTax(int employeeID) {
+        return calculateGrossTax(employeeID)-calculateTaxRelief(employeeID);
     }
 
     //
@@ -242,8 +229,10 @@ public class FullTimeDeductionsCalculator {
 
     //Set and calculate for union fees
     public double calculateUnionFees(int employeeID) {
-        double temp = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getSalary();
-        String[] unions= Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getUnions();
+        Employee fullTime = Employees.getEmployeeFromIndex(employeeID);
+        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fullTime;
+        double temp = fullTimeEmployee.getSalary();
+        String[] unions= fullTimeEmployee.getUnions();
         for (String nameOfUnion: unions ) {
             if (nameOfUnion.equals("Unite")) {
                 totalUnionFees = totalUnionFees +228;
@@ -293,9 +282,10 @@ public class FullTimeDeductionsCalculator {
         this.healthInsuranceCostPerMonth=healthInsuranceCostPerMonth;
     }
     public double calculateHeathInsurance(int employeeID) {
-        boolean healthInsurance = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).hasHealthInsurance();
-        String healthPlan = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHealthPlan();
-        String healthPlanType = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID)).getHealthPlanType();
+        Employee fullTime = Employees.getEmployeeFromIndex(employeeID);
+        boolean healthInsurance = fullTime.hasHealthInsurance();
+        String healthPlan = fullTime.getHealthPlan();
+        String healthPlanType = fullTime.getHealthPlanType();
         if(healthInsurance==true) {
             if(healthPlan == "VHI One Plan 250") {
                 if(healthPlanType=="Single") {
