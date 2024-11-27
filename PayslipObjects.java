@@ -26,10 +26,25 @@ public class PayslipObjects { //constructor class to create payslip objects
     }
 
     //toString method
+    @Override
     public String toString() {
-        return "Date: " + date + "\nName: " + name + "\nEmployee ID: " + employeeID +
-                "\nUSC: " + usc + "\nPRSI: " + prsi + "\nUnion Fees: " + unionFees +
-                "\nHealth Insurance: " + healthInsurance + "\nNet Tax: " + netTax +
-                "\nNet Pay: " + netPay + "\nPRSI Subclass: " + prsiSubClass;
+        return "--------------------------------------------------------\n" +
+                "                     Payslip                           \n" +
+                "--------------------------------------------------------\n" +
+                "Date:               " + date + "\n" +
+                "Employee Name:      " + name + "\n" +
+                "Employee ID:        " + employeeID + "\n" +
+                "--------------------------------------------------------\n" +
+                "Deductions:                                         \n" +
+                "    USC:             €" + usc + "\n" +
+                "    PRSI:            €" + prsi + "\n" +
+                "    Union Fees:      €" + unionFees + "\n" +
+                "    Health Insurance:€" + healthInsurance + "\n" +
+                "    Net Tax:         €" + netTax + "\n" +
+                "--------------------------------------------------------\n" +
+                "PRSI Subclass:       " + prsiSubClass + "\n" +
+                "Net Pay:            €" + netPay + "\n" +
+                "--------------------------------------------------------";
     }
+
 }
