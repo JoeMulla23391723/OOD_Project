@@ -49,7 +49,6 @@ public class Login{
 
                if (passwordCheck.equals(storedPassword)) {
                    System.out.println("Access granted!");
-                   System.out.print("C)urrent Payslips , P)ast Payslips , L)ogout");
                    return; 
                } else if (attempts < 2) {
                    System.out.println("Incorrect password. Try again.");
