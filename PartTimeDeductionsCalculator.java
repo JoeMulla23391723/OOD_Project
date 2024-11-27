@@ -332,4 +332,17 @@ public class PartTimeDeductionsCalculator {
         healthInsuranceCostPerMonth= healthInsuranceCost;
         return healthInsuranceCostPerMonth;
     }
+
+    //method to calculate actual pay of the part-time employee
+    public double calculateNetPay(int employeeID){
+        Employee partTime = Employees.getEmployeeFromIndex(employeeID);
+        PartTimeEmployee partTimeEmployee = (PartTimeEmployee) partTime;
+        double hoursWorked = partTimeEmployee.getHoursWorkedThisPayPeriod();
+        double hourlyRateOfPay = partTimeEmployee.getHourlyRate();
+        double temp = hoursWorked * hourlyRateOfPay;
+        double partTimeNetPayPerMonth = temp - (calculateUscPaid(employeeID) + calculatePrsiPaid(employeeID) +
+                calculateNetTax(employeeID) + calculateUnionFees(employeeID)
+                + calculateHeathInsuranceCost(employeeID));
+        return partTimeNetPayPerMonth;
+    }
 }
