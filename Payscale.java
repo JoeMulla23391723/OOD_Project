@@ -198,6 +198,14 @@ public class Payscale {
         }
         return payscale;
     }
+
+      public int getSalaryWithoutDeductions(int[] payscale, int level) {
+        int i = promotionLevels.length-1;
+        while(level<promotionLevels[i]) {
+            i--;
+        }
+        return payscale [i];
+    }
 }
 
 
