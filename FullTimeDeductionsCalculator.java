@@ -321,6 +321,29 @@ public class FullTimeDeductionsCalculator {
         return healthInsuranceCostPerMonth;
     }
 
+    // Method to get the salary of a full-time employee before deductions are applied
+    public double getEmployeeSalaryWithoutDeductions(int employeeID) {
+        int salary = 0;
+        Payscale payscale = new Payscale();
+        int[] salaryScales = payscale.getPayscaleByProfession((Employees.getIndexOfEmployeeID(employeeID)));
+        salary = payscale.getSalaryWithoutDeductions(salaryScales, Employees.getPromotionLevel(employeeID));
+        return salary;
+    }
+
+    // Method to get the salary of a full-time employee after deductions are applied
+    public double calculateFullTimeNetPay(int employeeID) throws IllegalArgumentException {
+        double fullTimeNetPayPerMonth;
+        Employee employee = Employees.getEmployeeFromIndex(employeeID);
+        if (employee instanceof FullTimeEmployee) {
+            FullTimeDeductionsCalculator deductions = new FullTimeDeductionsCalculator();
+            fullTimeNetPayPerMonth = (getEmployeeSalaryWithoutDeductions(employeeID) / 12) - (deductions.calculateUscPaid(employeeID) + deductions.calculatePrsiPaid(employeeID) +
+                    deductions.calculateNettTax(employeeID) + deductions.calculateNettTax(employeeID) + deductions.calculateUnionFees(employeeID) + deductions.calculateHeathInsurance(employeeID));
+        }
+        else{
+            throw new IllegalArgumentException("Employee is not employed on a full-time basis");
+        }
+        return fullTimeNetPayPerMonth;
+    }
 
 
 }
