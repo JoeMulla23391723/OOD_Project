@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-public class hrMenu {
+public class HrMenu {
 
 	public static void showMenu() {
 		System.out.print("Select an option: ");
