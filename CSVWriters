@@ -27,7 +27,7 @@ public class CSVWriters {
     // Method to write data for a single employee
     public void writeEmployeeFullEmployee(Employee employee) {
         FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) employee;
-        String row = String.format("%s,%d,%s,%s,%s,%s,%s,%d,%b,%b,%s,%s,%s,%d,%b,%s,%s,%s,%s,%s,%.2f,%d,%s",
+        String row = String.format("%s,%d,%s,%s,%s,%s,%s,%d,%b,%b,%s,%s,%s,%d,%b,%s,%s,%s,%s,%s,%.2f",
                 fullTimeEmployee.getName(),                     // Name
                 fullTimeEmployee.getId(),                       // Id
                 fullTimeEmployee.getJobTitle(),                 // Job Title
