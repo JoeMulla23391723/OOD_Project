@@ -2,7 +2,7 @@ public class FullTimeEmployee extends Employee {
     //subclass of employee for a full-time employee
     private String salaryScalePoint; //int to represent the point of the salary scale the employee is at
     private String department;// department name of the employee
-    private int salary;//yearly salary of the employee//
+    private double salary;//yearly salary of the employee//
 
 
 
