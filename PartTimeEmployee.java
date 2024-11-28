@@ -17,11 +17,10 @@ public class PartTimeEmployee extends Employee{
         this.hoursWorkedThisPayPeriod = Double.parseDouble(employeeDetails[20]);
     }
 
-    public PartTimeEmployee(String name, int id, String jobTitle, String pps, String email, String address, String phoneNum, int age, boolean medicalCard, boolean healthInsurance, String status, String[] taxCredits, String password, int numIncomes, boolean higherEarner, String[] unions, String healthPlan, String healthPlanType, double hourlyRate, boolean payClaimSubmitted, LocalDate datePayClaimSubmitted, double hoursWorkedThisPayPeriod) {
+    public PartTimeEmployee(String name, int id, String jobTitle, String pps, String email, String address, String phoneNum, int age, boolean medicalCard, boolean healthInsurance, String status, String[] taxCredits, String password, int numIncomes, boolean higherEarner, String[] unions, String healthPlan, String healthPlanType, double hourlyRate, boolean payClaimSubmitted, double hoursWorkedThisPayPeriod) {
         super(name, id, jobTitle, pps, email, address, phoneNum, age, medicalCard, healthInsurance, status, taxCredits, password, numIncomes, higherEarner, unions, healthPlan, healthPlanType);
         this.hourlyRate = hourlyRate;
         this.payClaimSubmitted = payClaimSubmitted;
-        this.datePayClaimSubmitted = datePayClaimSubmitted;
         this.hoursWorkedThisPayPeriod = hoursWorkedThisPayPeriod;
     }
 
