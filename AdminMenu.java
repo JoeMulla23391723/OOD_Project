@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-public class adminMenu {
+public class AdminMenu {
 
 	public static void showMenu() {
 		Scanner in = new Scanner(System.in);
