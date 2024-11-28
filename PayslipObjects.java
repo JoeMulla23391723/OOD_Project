@@ -36,15 +36,16 @@ public class PayslipObjects { //constructor class to create payslip objects
                 "Employee ID:        " + employeeID + "\n" +
                 "--------------------------------------------------------\n" +
                 "Deductions:                                         \n" +
-                "    USC:             €" + usc + "\n" +
-                "    PRSI:            €" + prsi + "\n" +
-                "    Union Fees:      €" + unionFees + "\n" +
-                "    Health Insurance:€" + healthInsurance + "\n" +
-                "    Net Tax:         €" + netTax + "\n" +
+                "    USC:             €" + String.format("%.2f", usc) + "\n" +
+                "    PRSI:            €" + String.format("%.2f", prsi) + "\n" +
+                "    Union Fees:      €" + String.format("%.2f", unionFees) + "\n" +
+                "    Health Insurance:€" + String.format("%.2f", healthInsurance) + "\n" +
+                "    Net Tax:         €" + String.format("%.2f", netTax) + "\n" +
                 "--------------------------------------------------------\n" +
                 "PRSI Subclass:       " + prsiSubClass + "\n" +
-                "Net Pay:            €" + netPay + "\n" +
+                "Net Pay:            €" + String.format("%.2f", netPay) + "\n" +
                 "--------------------------------------------------------";
     }
+
 
 }
