@@ -41,12 +41,12 @@ public class Employees {
     }
 
     // Method to add a new full-time employee
-    public void addFullTimeEmployee(FullTimeEmployee ft) {
+    public static void addFullTimeEmployee(FullTimeEmployee ft) {
         employees.add(ft);
     }
 
     // Method to add a new part-time employee
-    public void addPartTimeEmployee(PartTimeEmployee pt) {
+    public static void addPartTimeEmployee(PartTimeEmployee pt) {
         employees.add(pt);
     }
 
