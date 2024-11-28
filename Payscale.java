@@ -6,8 +6,8 @@ public class Payscale {
     private HashMap<String, double[]> presidents = new HashMap<String, double[]>();
     private HashMap<String, double[]> academic = new HashMap<String, double[]>();
     private HashMap<String, double[]> administrative = new HashMap<String, double[]>();
-    private HashMap<String, double[]> educationProcurementServices = new HashMap<String, double[]>();
     private HashMap<String, double[]> library = new HashMap<String, double[]>();
+    private HashMap<String, double[]> educationProcurementServices = new HashMap<String, double[]>();
     private HashMap<String, double[]> informationTechnology = new HashMap<String, double[]>();
     private HashMap<String, double[]> technical = new HashMap<String, double[]>();
     private HashMap<String, double[]> serviceStaff = new HashMap<String, double[]>();
@@ -23,7 +23,20 @@ public class Payscale {
 
 
     // No argument constructor for a payscale object
-    public Payscale() {
+    public Payscale(){
+            setPresedentialPayscales();
+            setAcademicPayscales();
+            setLibraryPayscales();
+            setAdministrativePayscales();
+            setEducationProcurementServicesPayscales();
+            setCoopPayscales();
+            setInformationTechnologyPayscales();
+            setTechnicalPayscales();
+            setServiceStaffPayscales();
+            setTeachersPayscales();
+            setClinicalPayscales();
+            setUlacPayscales();
+            setResearchersPayscales();
     }
 
     // Methods to initialise arrays for payscales by faculty
@@ -45,7 +58,7 @@ public class Payscale {
     }
 
     //Initialise all pay scales for 'Administrative' faculty
-    public void settAdministrativePayscales() {
+    public void setAdministrativePayscales() {
         administrative.put("senior_administrative_officer_iii", new double[] {106800, 113990, 121181, 128369, 135565, 142758});
         administrative.put("senior_administrative_officer_ii", new double[] {94941, 98703, 102487, 106270, 110030, 113810, 117589, 121368, 125140});
         administrative.put("senior_administrative_officer_i", new double[] {67132, 69712, 72480, 75725, 79088, 82103, 86389, 90697, 95004, 99396, 103583, 107875});
@@ -86,7 +99,7 @@ public class Payscale {
 
 
     //Initialise all pay scales for 'Technical' faculty
-    public void setTechncialPayscales() {
+    public void setTechnicalPayscales() {
         technical.put("chief_technical_officer", new double[] {64838, 67536, 70205, 72494, 75821, 78621});
         technical.put("technical_officer", new double[] {39828, 41606, 43745, 45033, 46408, 49325, 51251, 53228, 55376, 57459});
         technical.put("senior_technical_officer", new double[] {60654, 62799, 65107, 67470, 69827, 71290});
@@ -147,7 +160,6 @@ public class Payscale {
         researchers.put("research_fellow", new double[] {63958, 65813, 67224, 69692});
         researchers.put("senior_research_fellow", new double[] {77880, 80070, 81148, 83492});
     }
-
 
     // Method to find the payscale that corresponds to that employee based on their faculty and profession
     //Find out what pay scale the employee is operating on based on by their profession - They pay scales are stored in hash maps for each faculty/department
