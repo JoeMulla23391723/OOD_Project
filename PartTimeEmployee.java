@@ -1,3 +1,4 @@
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -22,6 +23,24 @@ public class PartTimeEmployee extends Employee{
         this.hourlyRate = hourlyRate;
         this.payClaimSubmitted = payClaimSubmitted;
         this.hoursWorkedThisPayPeriod = hoursWorkedThisPayPeriod;
+    }
+
+    public boolean validSubmissionDate(LocalDate datePayClaimSubmitted){
+
+        int year = datePayClaimSubmitted.getYear();
+        int month = datePayClaimSubmitted.getMonthValue();
+
+        LocalDate secondFriday = LocalDate.of(year,month, 1);
+
+        while(secondFriday.getDayOfWeek() != DayOfWeek.FRIDAY){
+            secondFriday = secondFriday.plusDays(1);
+        }
+        secondFriday = secondFriday.plusDays(7);
+
+        return datePayClaimSubmitted.isBefore(secondFriday);
+
+
+
     }
 
 
