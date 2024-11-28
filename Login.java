@@ -6,7 +6,7 @@ public class Login{
    public static void main(String[] args) {
 	   FullTimeEmployee employee = new FullTimeEmployee(
 	   "Alice Johnson",                 // Name
-	   102,                             // ID
+	   1,                             // ID
 	   "library_attendant",            // Job Title
 	   "1234567B",                      // PPS
 	   "alice.johnson@example.com",     // Email
@@ -17,7 +17,7 @@ public class Login{
 	   true,                            // Health Insurance
 	   "Single",                        // Status
 	   new String[]{"Employee Tax Credit", "Rent Tax Credit"},  // Tax Credits
-	   "password123",                 // Password
+	   "p",                 // Password
 	   1,                               // Number of Incomes
 	   false,                           // Higher Earner
 	   new String[]{"Unite"},           // Unions
@@ -25,10 +25,10 @@ public class Login{
 	   "Single",                        // Health Plan Type
 	   "5",                             // Salary Scale Point
 	   "library",                       // Department
-	   0                                // Salary
+	   50000                               // Salary
 
    );
-    Employees.addFullTimeEmployee(employee);
+	   Employees.addFullTimeEmployee(employee);
 
        Scanner in = new Scanner(System.in); // Scanner for user input
        System.out.println("Select your role:");
