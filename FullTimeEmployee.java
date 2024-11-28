@@ -10,7 +10,7 @@ public class FullTimeEmployee extends Employee {
         super(employeeDetails);
         this.salaryScalePoint = employeeDetails[17];
         this.department = employeeDetails[18];
-        this.salary = Integer.parseInt(employeeDetails[19]);
+        this.salary = Double.parseDouble(employeeDetails[19]);
 
     }
 
