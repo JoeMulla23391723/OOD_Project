@@ -64,4 +64,15 @@ public class Payslip {
         }
 
     }
+
+     public void printPayslipAtIndex(int index) {
+        if (index >= 0 && index < payslipArrayList.size()) {
+            PayslipObjects payslip = payslipArrayList.get(index);
+            System.out.println("Payslip at index " + index + ":");
+            System.out.println(payslip); // Calls the toString method of PayslipObjects
+            System.out.println("--------------------------------------------------------");
+        } else {
+            System.out.println("Invalid index. Payslip not found.");
+        }
+    }
 }
