@@ -88,7 +88,7 @@ public class FullTimeDeductionsCalculator {
     public double calculatePrsiPaid(int employeeID) {
         Employee fullTime = Employees.getEmployeeFromIndex(employeeID);
         FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fullTime;
-        double temp = fullTimeEmployee.getSalary();//calculating weekly pay as a temp variable
+        double temp = (fullTimeEmployee.getSalary())/52;//calculating weekly pay as a temp variable
         double prsiToPayPerWeek=0;
         double prsiToPayPerYear;
         if(temp<=352){
