@@ -325,7 +325,7 @@ public class FullTimeDeductionsCalculator {
     public double getEmployeeSalaryWithoutDeductions(int employeeID) {
         double salary = 0;
         Payscale payscale = new Payscale();
-        int[] salaryScales = payscale.getPayscaleByProfession((Employees.getIndexOfEmployeeID(employeeID)));
+        double[] salaryScales = payscale.getPayscaleByProfession((Employees.getIndexOfEmployeeID(employeeID)));
         salary = payscale.getSalaryWithoutDeductions(salaryScales, Employees.getPromotionLevel(employeeID));
         return salary;
     }
