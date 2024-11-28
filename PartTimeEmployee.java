@@ -25,12 +25,13 @@ public class PartTimeEmployee extends Employee{
         this.hoursWorkedThisPayPeriod = hoursWorkedThisPayPeriod;
     }
 
+    LocalDate secondFriday;
     public boolean validSubmissionDate(LocalDate datePayClaimSubmitted){
 
         int year = datePayClaimSubmitted.getYear();
         int month = datePayClaimSubmitted.getMonthValue();
 
-        LocalDate secondFriday = LocalDate.of(year,month, 1);
+        secondFriday = LocalDate.of(year,month, 1);
 
         while(secondFriday.getDayOfWeek() != DayOfWeek.FRIDAY){
             secondFriday = secondFriday.plusDays(1);
