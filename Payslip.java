@@ -16,7 +16,7 @@ public class Payslip {
         FullTimeDeductionsCalculator fullTimeCalculator = new FullTimeDeductionsCalculator();
         if (employee instanceof PartTimeEmployee) { //part-time payslips only show current months based on one hoursWorked value
             PartTimeEmployee partTimeEmployee = (PartTimeEmployee) employee;
-
+            if(partTimeEmployee.validSubmissionDate(partTimeEmployee.getDatePayClaimSubmitted())){
             System.out.println("--------------------------------------------------------");
             System.out.println("                     Payslip                           ");
             System.out.println("--------------------------------------------------------");
@@ -38,12 +38,14 @@ public class Payslip {
             System.out.printf("PRSI Subclass:       %s%n", partTimeCalculator.getPrsiSubClass());
             System.out.printf("Income Pay:            €%.2f%n", partTimeCalculator.calculateNetPay(employeeID));
             System.out.println("--------------------------------------------------------");
-
+            } else if (!partTimeEmployee.validSubmissionDate(partTimeEmployee.getDatePayClaimSubmitted())) {
+                System.out.println("No Payslip Available: Payslip Submitted Too Late");
+            }
         }
 
         else if (employee instanceof FullTimeEmployee) { //Creates a full-time payslip object that is then stored in an arraylist
             this.payslipArrayList = new ArrayList<>();
-            for ( month = 11; month >= 7; month--) {
+            for ( month = 11; month >= 6; month--) {
                 FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) employee;
                 fullTimeEmployee.setSalary(employeeID);
                 PayslipObjects payslip = new PayslipObjects(
