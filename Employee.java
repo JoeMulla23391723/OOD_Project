@@ -18,17 +18,6 @@ public class Employee { //superclass of all employees
     private String healthPlan; //Health Plan name
     private String healthPlanType; //type of health plan that.
 
-    //To allow override from Full-Time
-    private double salary;
-
-    public double getSalary() {
-        return 0;
-    }
-
-    //To allow override from Part-Time
-    private double hoursWorkedThisPayPeriod;
-    private double hourlyRate;
-    
 
     //Constructor that creates an employee object from information read from a CSV file
     public Employee(String[] employeeDetails) {
