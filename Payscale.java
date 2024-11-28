@@ -149,11 +149,13 @@ public class Payscale {
 
     // Method to find the payscale that corresponds to that employee based on their faculty and profession
     //Find out what pay scale the employee is operating on based on by their profession - They pay scales are stored in hash maps for each faculty/department
-    public int[] getPayscaleByProfession (int index) {
+    public int[] getPayscaleByProfession (int employeeId) {
         int[] payscale = new int[0];
-        String profession = Employees.getEmployees().get(index).getJobTitle();
-        String faculty = Employees.getEmployees().get(index).getDepartment();
-        
+        Employee fullTime = Employees.getEmployeeFromIndex(employeeId);
+        String profession = fullTime.getJobTitle();
+        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fullTime;
+        String faculty = fullTimeEmployee.getDepartment();
+
         switch(faculty){
             case("presidents"):
                 payscale = presidents.get(profession);
@@ -199,7 +201,7 @@ public class Payscale {
         return payscale;
     }
 
-      public int getSalaryWithoutDeductions(int[] payscale, int level) {
+    public int getSalaryWithoutDeductions(int[] payscale, int level) {
         int i = promotionLevels.length-1;
         while(level<promotionLevels[i]) {
             i--;
