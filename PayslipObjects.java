@@ -1,6 +1,7 @@
 public class PayslipObjects { //constructor class to create payslip objects
     private String date;
     private String name;
+    private String pps;
     private int employeeID;
     private double usc;
     private double prsi;
@@ -11,10 +12,11 @@ public class PayslipObjects { //constructor class to create payslip objects
     private String prsiSubClass;
 
     // Constructor
-    public PayslipObjects(String date, String name, int employeeID, double usc, double prsi, double unionFees,
+    public PayslipObjects(String date, String name, int employeeID, String pps, double usc, double prsi, double unionFees,
                         double healthInsurance, double netTax, double netPay, String prsiSubClass) {
         this.date = date;
         this.name = name;
+        this.pps = pps;
         this.employeeID = employeeID;
         this.usc = usc;
         this.prsi = prsi;
@@ -34,13 +36,14 @@ public class PayslipObjects { //constructor class to create payslip objects
                 "Date:               " + date + "\n" +
                 "Employee Name:      " + name + "\n" +
                 "Employee ID:        " + employeeID + "\n" +
+                "Employee PPS:       " + pps + "\n"+
                 "--------------------------------------------------------\n" +
                 "Deductions:                                         \n" +
                 "    USC:             €" + String.format("%.2f", usc) + "\n" +
                 "    PRSI:            €" + String.format("%.2f", prsi) + "\n" +
                 "    Union Fees:      €" + String.format("%.2f", unionFees) + "\n" +
                 "    Health Insurance:€" + String.format("%.2f", healthInsurance) + "\n" +
-                "    Net Tax:         €" + String.format("%.2f", netTax) + "\n" +
+                "    Income Tax:         €" + String.format("%.2f", netTax) + "\n" +
                 "--------------------------------------------------------\n" +
                 "PRSI Subclass:       " + prsiSubClass + "\n" +
                 "Net Pay:            €" + String.format("%.2f", netPay) + "\n" +
