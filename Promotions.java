@@ -14,7 +14,7 @@ public class Promotions {
         this.now = LocalDate.now();
     }
 
-    // Method to change employee profession based on time served at top of scale and reset salary point to 1
+    // Method to change employee profession and reset salary point to 1
     public void changeJobTitle(int employeeID, String jobTitle) {
         Employee fulltime = Employees.getEmployeeFromIndex(employeeID);
         FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
@@ -26,8 +26,8 @@ public class Promotions {
     public boolean isEmployeeAtTop(int employeeID) {
         boolean value = false;
         Payscale payscale = new Payscale();
-        int[] salaryScales = payscale.getPayscaleByProfession((Employees.getIndexOfEmployeeID(employeeID)));
-        int maxPointOnScale = salaryScales[salaryScales.length - 1];
+        double[] salaryScales = payscale.getPayscaleByProfession((Employees.getIndexOfEmployeeID(employeeID)));
+        double maxPointOnScale = salaryScales[salaryScales.length - 1];
         int employeePromotionLevel = Employees.getPromotionLevel(employeeID);
         if (employeePromotionLevel > maxPointOnScale) {
             value = true;
