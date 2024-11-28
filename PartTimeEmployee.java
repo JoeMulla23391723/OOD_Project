@@ -33,6 +33,7 @@ public class PartTimeEmployee extends Employee{
     public void setHourlyRate(double hourlyRate){
         this.hourlyRate = hourlyRate;
     }
+    
     public boolean getPayClaimSubmitted(){
         return payClaimSubmitted;
     }
@@ -45,14 +46,20 @@ public class PartTimeEmployee extends Employee{
     public void setDatePayClaimSubmitted (LocalDate datePayClaimSubmitted){
         this.datePayClaimSubmitted = datePayClaimSubmitted;
     }
-
-    @Override
+    
     public double getHoursWorkedThisPayPeriod() {
         return hoursWorkedThisPayPeriod;
     }
+
     public void setHoursWorkedThisPeriod (double hoursWorkedThisPeriod){
         this.hoursWorkedThisPayPeriod = hoursWorkedThisPeriod;
     }
+    
+    public String toString(){
+        return super.toString() + "Hourly Rate: " + getHourlyRate()
+                + "\n Pay Claim Submitted: " + getPayClaimSubmitted()
+                + "\n Date Pay Claim Submitted: " + getDatePayClaimSubmitted()
+                + "\n Hours Worked This Pay Period: " + getHoursWorkedThisPayPeriod();
+    }
 
 }
-
