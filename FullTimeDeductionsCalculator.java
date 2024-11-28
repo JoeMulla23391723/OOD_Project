@@ -322,7 +322,7 @@ public class FullTimeDeductionsCalculator {
     }
 
     // Method to get the salary of a full-time employee before deductions are applied
-    public double getEmployeeSalaryWithoutDeductions(int employeeID) {
+    public int getEmployeeSalaryWithoutDeductions(int employeeID) {
         int salary = 0;
         Payscale payscale = new Payscale();
         int[] salaryScales = payscale.getPayscaleByProfession((Employees.getIndexOfEmployeeID(employeeID)));
@@ -337,7 +337,7 @@ public class FullTimeDeductionsCalculator {
         if (employee instanceof FullTimeEmployee) {
             FullTimeDeductionsCalculator deductions = new FullTimeDeductionsCalculator();
             fullTimeNetPayPerMonth = (getEmployeeSalaryWithoutDeductions(employeeID) / 12) - (deductions.calculateUscPaid(employeeID) + deductions.calculatePrsiPaid(employeeID) +
-                    deductions.calculateNettTax(employeeID) + deductions.calculateNettTax(employeeID) + deductions.calculateUnionFees(employeeID) + deductions.calculateHeathInsurance(employeeID));
+                    deductions.calculateNetTax(employeeID) + deductions.calculateNetTax(employeeID) + deductions.calculateUnionFees(employeeID) + deductions.calculateHeathInsurance(employeeID));
         }
         else{
             throw new IllegalArgumentException("Employee is not employed on a full-time basis");
@@ -347,5 +347,4 @@ public class FullTimeDeductionsCalculator {
 
 
 }
-
 
