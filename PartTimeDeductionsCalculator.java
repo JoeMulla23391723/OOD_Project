@@ -233,7 +233,7 @@ public class PartTimeDeductionsCalculator {
         return totalTaxReliefPerMonth;
     }
 
-    public double calculateNettTax(int employeeID) {
+    public double calculateNetTax(int employeeID) {
         return calculateGrossTax(employeeID)-calculateTaxRelief(employeeID);
     }
     public void setUnionFees(double totalUnionFeesPerMonth) {
