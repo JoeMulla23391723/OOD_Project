@@ -323,12 +323,11 @@ public class FullTimeDeductionsCalculator {
 
     // Method to get the salary of a full-time employee before deductions are applied
     public double getEmployeeSalaryWithoutDeductions(int employeeID) {
-        double salary = 0;
-        Payscale payscale = new Payscale();
-        double[] salaryScales = payscale.getPayscaleByProfession((Employees.getIndexOfEmployeeID(employeeID)));
-        salary = payscale.getSalaryWithoutDeductions(salaryScales, Employees.getPromotionLevel(employeeID));
-        return salary;
+        Employee employee = Employees.getEmployeeFromIndex(employeeID);
+        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) employee;
+        return fullTimeEmployee.getSalary();
     }
+
 
     // Method to get the salary of a full-time employee after deductions are applied
     public double calculateFullTimeNetPay(int employeeID) throws IllegalArgumentException {
