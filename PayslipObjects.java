@@ -43,7 +43,7 @@ public class PayslipObjects { //constructor class to create payslip objects
                 "    PRSI:            €" + String.format("%.2f", prsi) + "\n" +
                 "    Union Fees:      €" + String.format("%.2f", unionFees) + "\n" +
                 "    Health Insurance:€" + String.format("%.2f", healthInsurance) + "\n" +
-                "    Income Tax:         €" + String.format("%.2f", netTax) + "\n" +
+                "    Income Tax:      €" + String.format("%.2f", netTax) + "\n" +
                 "--------------------------------------------------------\n" +
                 "PRSI Subclass:       " + prsiSubClass + "\n" +
                 "Net Pay:            €" + String.format("%.2f", netPay) + "\n" +
