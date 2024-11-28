@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Employees {
     // ArrayList of type Employee that will contain Employee objects
     private static ArrayList<Employee> employees;
-    private static ArrayList<Promotions> promotions;
+   
 
 
     // Necessary data fields
@@ -89,63 +89,23 @@ public class Employees {
         return e;
     }
 
-    // Full-time employee specific methods
-
     // Method to get the promotion level of a full-time employee, given its index position
     public static int getPromotionLevel(int employeeID) {
         Employee fulltime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
         FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
         return Integer.parseInt(fullTimeEmployee.getSalaryScalePoint());
     }
-
-
-    // Method to change employee profession based on time served at top of scale and reset salary point to 1
-
-    public void changeJobTitle(int employeeID, String jobTitle) {
-        Employee fulltime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
-        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
-        fullTimeEmployee.setJobTitle(jobTitle);
-        fullTimeEmployee.setSalaryScalePoint("0");
-    }
-
-    // Method to check if an employee is at the top of their salary scale
-    public boolean isEmployeeAtTop() {
-        boolean value = false;
-        return value;
-    }
-
-    // Method to change employee salary point (Promotes employee)
-    public void incrementSalaryScalePoint(int employeeID, String salaryScalePoint) throws IllegalArgumentException {
-        //Only do this if emplpoyee is not at the top of their salary scale
-        if (!isEmployeeAtTop()) {
-            Employee fulltime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
-            FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
-            fullTimeEmployee.setSalaryScalePoint(salaryScalePoint);
-            promotions.add(new Promotions(employeeID, LocalDate.now()));
-        } else {
-            throw new IllegalArgumentException("Employee cannot be promoted further");
-        }
-    }
-
-    // Method to promote an employee every october
-    public void promoteEmployeeBasedOnTime(int employeeID, String salaryScalePoint) throws IllegalArgumentException {
-        Employee fulltime = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
-        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
-        int currentMonth = LocalDate.now().getMonthValue();
-        if (currentMonth >= 10) {
-            //Only promote if they haven't already been promoted that year
-            //Only promote if they haven't reached the top of their salary scale
-            if () {
-                incrementSalaryScalePoint(employeeID, salaryScalePoint);
-
-            }
-            promotions.add(new Promotions(employeeID, LocalDate.now()));
-        }
-    }
-
-
-    // Part-Time specific methods
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Part-Time specific methods  - Will maybe add to part time calculator
     //Methods to set and get the submission deadline of the pay-claim form
     public void setSubmissionDeadline(LocalDate submissionDeadline) {
         submissionDeadLine = submissionDeadline;
@@ -169,7 +129,6 @@ public class Employees {
         return eligibility;
     }
 }
-
 
 
 
