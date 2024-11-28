@@ -10,7 +10,7 @@ public class Payslip {
 
 
     //method that should see if an employee is either part-time or full-time, then prints the relevant payslip.
-    public void printPayslip(int employeeID) {
+    public void printPayslip(int employeeID, int index) {
         Employee employee = Employees.getEmployeeFromIndex(employeeID);
         PartTimeDeductionsCalculator partTimeCalculator = new PartTimeDeductionsCalculator();
         FullTimeDeductionsCalculator fullTimeCalculator = new FullTimeDeductionsCalculator();
@@ -35,13 +35,13 @@ public class Payslip {
             System.out.printf("    Net Tax:         €%.2f%n", partTimeCalculator.calculateNetTax(employeeID));
             System.out.println("--------------------------------------------------------");
             System.out.printf("PRSI Subclass:       %s%n", partTimeCalculator.getPrsiSubClass());
-            System.out.printf("Net Pay:            €%.2f%n", partTimeCalculator.calculateNetPay(employeeID));
+            System.out.printf("Income Pay:            €%.2f%n", partTimeCalculator.calculateNetPay(employeeID));
             System.out.println("--------------------------------------------------------");
 
         }
 
         else if (employee instanceof FullTimeEmployee) { //Creates a full-time payslip object that is then stored in an arraylist
-            payslipArrayList = new ArrayList<>();
+            this.payslipArrayList = new ArrayList<>();
             for (int i = 6; i <= 11; i++) {
                 FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) employee;
                 fullTimeEmployee.setSalary(employeeID);
@@ -62,17 +62,9 @@ public class Payslip {
         }else{
             System.out.println("No payslip to be printed");
         }
+        System.out.println(payslipArrayList.get(index));
 
     }
 
-     public void printPayslipAtIndex(int index) {
-        if (index >= 0 && index < payslipArrayList.size()) {
-            PayslipObjects payslip = payslipArrayList.get(index);
-            System.out.println("Payslip at index " + index + ":");
-            System.out.println(payslip); // Calls the toString method of PayslipObjects
-            System.out.println("--------------------------------------------------------");
-        } else {
-            System.out.println("Invalid index. Payslip not found.");
-        }
-    }
+   
 }
