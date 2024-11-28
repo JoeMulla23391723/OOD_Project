@@ -1,4 +1,4 @@
-package Project;
+
 
 public class AdminUser{
 	private static String adminID = "1234";
