@@ -1,4 +1,4 @@
-public abstract class Employee { //superclass of all employees
+public class Employee { //superclass of all employees
     private String name; //Name of employee
     private int id; //int id number of the employee
     private String jobTitle; //Job Title of the employee
@@ -28,14 +28,7 @@ public abstract class Employee { //superclass of all employees
     //To allow override from Part-Time
     private double hoursWorkedThisPayPeriod;
     private double hourlyRate;
-
-    public double getHoursWorkedThisPayPeriod() {
-        return 0;
-    }
-
-    public double getHourlyRate() {
-        return 0;
-    }
+    
 
     //Constructor that creates an employee object from information read from a CSV file
     public Employee(String[] employeeDetails) {
