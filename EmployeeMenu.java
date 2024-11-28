@@ -1,3 +1,5 @@
+package OOD;
+
 import java.util.Scanner;
 
 public class EmployeeMenu {
@@ -14,10 +16,24 @@ public class EmployeeMenu {
 			Payslip payslip = new Payslip();
 
 			if(command.equals("C")) {
-				payslip.printPayslip(employeeID,5);
+				payslip.printPayslip(employeeID,0);
 
 			}else if(command.equals("P")) {
-				System.out.print("Here are your past payslips: ");
+				System.out.println("What months payslip would you like to view: ");
+				System.out.println("O)ctober \nS)eptember \nA)ugust \nJ)uly");
+				String Choosing = in.nextLine().toUpperCase();
+				
+				if (Choosing.equals("O")) {
+					payslip.printPayslip(employeeID,1);
+				}else if(Choosing.equals("S")) {
+					payslip.printPayslip(employeeID,2);
+				}else if(Choosing.equals("A")) {
+					payslip.printPayslip(employeeID,3);
+				}else if(Choosing.equals("J")) {
+					payslip.printPayslip(employeeID,4);
+				}
+				else
+					System.out.print("The option you have entered is incorrect. Logging you out.");
 
 			}else if(command.equals("L")) {
 				System.out.print("Logging out...");
@@ -31,11 +47,11 @@ public class EmployeeMenu {
 		}else {
 			System.out.println("C)urrent Payslip, P)ast payslips L)ogout ");
 			String command = in.nextLine().toUpperCase();
-
+			Payslip payslip = new Payslip();
 
 			if(command.equals("C")) {
 				System.out.print("Here is your current payslip: ");
-
+				payslip.printPayslip(employeeID,0);
 
 			}else if(command.equals("P")) {
 				System.out.print("Past payslips are not available for part-time employees.");
