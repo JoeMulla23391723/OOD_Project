@@ -40,13 +40,13 @@ public class FullTimeEmployee extends Employee {
         this.department = department;
     }
 
-
+ // Getter and Setter for salary
     public void setSalary(int employeeId) {
         FullTimeDeductionsCalculator salaryCalc = new FullTimeDeductionsCalculator();
         this.salary = salaryCalc.getEmployeeSalaryWithoutDeductions(employeeId);
     }
 
-    // Getter and Setter for professional category
+
     public double getSalary() {
         return salary;
     }
