@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Employee { //superclass of all employees
     private String name; //Name of employee
     private int id; //int id number of the employee
@@ -234,4 +236,15 @@ public class Employee { //superclass of all employees
         this.healthPlanType = healthPlanType;
     }
 
+    // Method to display employee information
+    public String toString(){
+        return "Name: " + getName() + "/n ID: " + getId() + "/n Title" + getJobTitle()
+                + "/n PPS: " + getPps() + "/n Email: " + getEmail()
+                + "/n Address: " + getAddress() + "/n Phone Number: " + getPhoneNum()
+                + "/n Age: " + getAge() + "/n Medical Card: " + hasMedicalCard()
+                + "/n Health Insurance" + hasHealthInsurance() + "/Health Plan " + getHealthPlanType() + "/n Health Plan Type: " + getHealthPlanType()
+                + "/n Status: " + getStatus() + "/n Number of Household Incomes " + getNumIncomes() + "/n Household Higher Earner " + isHigherEarner()
+                + "/n Tax Credits: " + Arrays.toString(getTaxCredits()) + "/n Unions: " + Arrays.toString(getUnions());
+
+    }
 }
