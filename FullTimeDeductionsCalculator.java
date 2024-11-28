@@ -322,8 +322,8 @@ public class FullTimeDeductionsCalculator {
     }
 
     // Method to get the salary of a full-time employee before deductions are applied
-    public int getEmployeeSalaryWithoutDeductions(int employeeID) {
-        int salary = 0;
+    public double getEmployeeSalaryWithoutDeductions(int employeeID) {
+        double salary = 0;
         Payscale payscale = new Payscale();
         int[] salaryScales = payscale.getPayscaleByProfession((Employees.getIndexOfEmployeeID(employeeID)));
         salary = payscale.getSalaryWithoutDeductions(salaryScales, Employees.getPromotionLevel(employeeID));
