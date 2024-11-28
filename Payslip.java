@@ -22,6 +22,7 @@ public class Payslip {
             System.out.println("--------------------------------------------------------");
             System.out.println("Employee Name: " + partTimeEmployee.getName());
             System.out.println("Employee ID:   " + partTimeEmployee.getId());
+            System.out.println(("Employee PPS: " + partTimeEmployee.getPps()));
             System.out.println("Date:          " + "25/" + month + "/2024");
             System.out.println("--------------------------------------------------------");
             System.out.println("Hours Worked:        " + partTimeEmployee.getHoursWorkedThisPayPeriod());
@@ -42,13 +43,14 @@ public class Payslip {
 
         else if (employee instanceof FullTimeEmployee) { //Creates a full-time payslip object that is then stored in an arraylist
             this.payslipArrayList = new ArrayList<>();
-            for (int i = 6; i <= 11; i++) {
+            for ( month = 11; month >= 7; month--) {
                 FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) employee;
                 fullTimeEmployee.setSalary(employeeID);
                 PayslipObjects payslip = new PayslipObjects(
-                        "25/" + i + "/2024",
+                        "25/" + month + "/2024",
                         fullTimeEmployee.getName(),
                         fullTimeEmployee.getId(),
+                        fullTimeEmployee.getPps(),
                         fullTimeCalculator.calculateUscPaid(employeeID),
                         fullTimeCalculator.calculatePrsiPaid(employeeID),
                         fullTimeCalculator.calculateUnionFees(employeeID),
@@ -66,5 +68,5 @@ public class Payslip {
 
     }
 
-   
+
 }
