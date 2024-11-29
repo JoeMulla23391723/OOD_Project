@@ -7,15 +7,15 @@ public class PartTimeEmployee extends Employee{
     private boolean payClaimSubmitted;
     private LocalDate datePayClaimSubmitted;
     private double hoursWorkedThisPayPeriod;
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MM/dd/yy");
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");;
 
 
     public PartTimeEmployee(String[] employeeDetails){
         super(employeeDetails);
-        this.hourlyRate = Double.parseDouble(employeeDetails[17]);
-        this.payClaimSubmitted = Boolean.parseBoolean(employeeDetails[18]);
-        this.datePayClaimSubmitted = LocalDate.parse(employeeDetails[19], DATE_FORMAT);
-        this.hoursWorkedThisPayPeriod = Double.parseDouble(employeeDetails[20]);
+        this.hourlyRate = Double.parseDouble(employeeDetails[18]);
+        this.payClaimSubmitted = Boolean.parseBoolean(employeeDetails[19]);
+        this.datePayClaimSubmitted = LocalDate.parse(employeeDetails[20], DATE_FORMAT);
+        this.hoursWorkedThisPayPeriod = Double.parseDouble(employeeDetails[21]);
     }
 
     public PartTimeEmployee(String name, int id, String jobTitle, String pps, String email, String address, String phoneNum, int age, boolean medicalCard, boolean healthInsurance, String status, String[] taxCredits, String password, int numIncomes, boolean higherEarner, String[] unions, String healthPlan, String healthPlanType, double hourlyRate, boolean payClaimSubmitted, double hoursWorkedThisPayPeriod) {
