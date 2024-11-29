@@ -16,45 +16,16 @@ public class Promotions {
 
     // Method to change employee profession and reset salary point to 1
     public void changeJobTitle(int employeeID, String jobTitle) {
-        Employee fulltime = Employees.getEmployeeFromIndex(employeeID);
-        FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
-        fullTimeEmployee.setJobTitle(jobTitle);
-        fullTimeEmployee.setSalaryScalePoint("0");
+       Employee employee = Employees.getEmployeeFromIndex(employeeID);
+        employee.setJobTitle(jobTitle);
     }
-
-    // Method to check if an employee is at the top of their salary scale
-    public boolean isEmployeeAtTop(int employeeID) {
-        boolean value = false;
-        Payscale payscale = new Payscale();
-        double[] salaryScales = payscale.getPayscaleByProfession((Employees.getIndexOfEmployeeID(employeeID)));
-        double maxPointOnScale = salaryScales[salaryScales.length - 1];
-        int employeePromotionLevel = Employees.getPromotionLevel(employeeID);
-        if (employeePromotionLevel > maxPointOnScale) {
-            value = true;
-        }
-        return value;
-    }
-
-    // Method to change employee salary point if emplpoyee is not at the top of their salary scale
-    public void incrementSalaryScalePoint(int employeeID, String salaryScalePoint) throws IllegalArgumentException {
-        if (!isEmployeeAtTop(employeeID)) {
-                    Employee fulltime = Employees.getEmployeeFromIndex(employeeID);
-                    FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) fulltime;
-                    fullTimeEmployee.setSalaryScalePoint(salaryScalePoint);
-                    promotions.add(new Promotions(employeeID, LocalDate.now()));
-                } else {
-                    throw new IllegalArgumentException("Employee cannot be promoted further");
-                }
-            }
-
 
     // Method to promote an employee every october if they have not been promoted already that month
-    public void promoteEmployeeBasedOnTime(int employeeID, String salaryScalePoint) throws IllegalArgumentException {
+    public void promoteEmployeeBasedOnTime(int employeeID) throws IllegalArgumentException {
         int currentMonth = LocalDate.now().getMonthValue();
         if (currentMonth == 10) {
             for (Promotions promotion : promotions) {
                 if (promotion.getEmployeeID() == employeeID && promotion.getNow().getMonthValue() == now.getMonthValue()) {
-                    incrementSalaryScalePoint(employeeID, salaryScalePoint);
                     promotions.add(new Promotions(employeeID, LocalDate.now()));
                 }
                 else { throw new IllegalArgumentException("Employee has already been promoted"); }
@@ -63,7 +34,7 @@ public class Promotions {
         else {
             throw new IllegalArgumentException("Employee cannot be promoted this month"); }
     }
-
+    
             //Getter and setter methods for data fields
             public int getEmployeeID () {
                 return employeeID;
