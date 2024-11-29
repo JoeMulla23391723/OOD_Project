@@ -35,11 +35,11 @@ public class Employee { //superclass of all employees
         this.medicalCard = Boolean.parseBoolean(employeeDetails[8]);
         this.healthInsurance = Boolean.parseBoolean(employeeDetails[9]);
         this.status = employeeDetails[10];
-        this.taxCredits = employeeDetails[11].split(",");
+        this.taxCredits = employeeDetails[11].split(";");
         this.password = employeeDetails[12];
         this.numIncomes = Integer.parseInt(employeeDetails[13]);
         this.higherEarner = Boolean.parseBoolean(employeeDetails[14]);
-        this.unions = employeeDetails[15].split(",");
+        this.unions = employeeDetails[15].split(";");
         this.healthPlan = employeeDetails[16];
         this.healthPlanType = employeeDetails[17];
     }
