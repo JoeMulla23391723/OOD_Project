@@ -1,0 +1,88 @@
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Scanner;
+
+public class HrMenu {
+
+	public static void showMenu() {
+		Scanner in = new Scanner(System.in);
+		System.out.print("Select an option: ");
+		System.out.print("P)romote an Employee \nL)ogout ");
+		String command = in.nextLine().toUpperCase();
+				
+			if(command.equals("P")) {
+				System.out.println("What type of employee would you like to promote: ");	
+				System.out.println("F)ull time employee \nP)art time employee ");
+				String choosing = in.nextLine().toUpperCase();
+				
+				if (choosing.equals("F")) {
+					System.out.print("Enter the employees ID number: ");
+					int IDNumber = Integer.parseInt(in.nextLine());
+					
+					if(Employees.getEmployeeFromIndex(IDNumber) instanceof FullTimeEmployee) {
+						String currentJobTitle = Employees.getEmployeeFromIndex(IDNumber).getJobTitle();					
+						System.out.print("Current job title:  " + currentJobTitle );
+						System.out.println("Select what option  ");	
+						System.out.print("E)xecute annual promotion \nN)ew promotion");
+						String chosen = in.nextLine().toUpperCase();
+						Promotions promotion = new Promotions(IDNumber, LocalDate.now());
+	
+						if(chosen.equals("E")) {
+							System.out.println("What is the employees new job title: ");
+							String jobTitle = in.nextLine();
+							promotion.promoteEmployeeBasedOnTime(IDNumber, jobTitle);
+							System.out.println("Employee has been promoted to " + jobTitle);
+						}else if(chosen.equals("N")) {
+							System.out.println("What is the employees new job title: ");
+							String jobTitle = in.nextLine();
+							promotion.changeJobTitle(IDNumber, jobTitle);
+							System.out.println("Employee has been promoted to " + jobTitle);
+						}
+						
+					}
+					else {
+						System.out.println("EmployeeID input is not a full-time employee.");
+					}
+					
+			}else if (command.equals("P")) {
+				System.out.print("Enter the employees ID number: ");
+				int IDNumber = Integer.parseInt(in.nextLine());
+				if(Employees.getEmployeeFromIndex(IDNumber) instanceof PartTimeEmployee) {
+					System.out.println("Select what option  ");	
+					System.out.print("N)ew promotion \nL)ogout");
+					String chosen = in.nextLine().toUpperCase();
+					Promotions promotion = new Promotions(IDNumber, LocalDate.now());
+					if(chosen.equals("N")) {
+						System.out.println("What is the employees new job title: ");
+						String jobTitle = in.nextLine();
+						promotion.changeJobTitle(IDNumber, jobTitle);
+						System.out.println("Employee has been promoted to " + jobTitle);
+					}
+					else {
+						System.out.print("The option you have entered is incorrect. Logging you out.");	
+					}
+				
+				}else {
+					System.out.println("EmployeeID input is not a part-time employee.");
+					
+				
+					
+				
+		}
+		
+	    }
+		
+	else {
+		System.out.print("The option you have entered is incorrect. Logging you out.");	
+	}
+	}
+	}
+}
+
+	
+
+
+	
+
+
