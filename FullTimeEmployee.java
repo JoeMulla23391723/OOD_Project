@@ -8,9 +8,9 @@ public class FullTimeEmployee extends Employee {
 
     public FullTimeEmployee(String[] employeeDetails) {
         super(employeeDetails);
-        this.salaryScalePoint = employeeDetails[17];
-        this.department = employeeDetails[18];
-        this.salary = Double.parseDouble(employeeDetails[19]);
+        this.salaryScalePoint = employeeDetails[18];
+        this.department = employeeDetails[19];
+        this.salary = Double.parseDouble(employeeDetails[20]);
 
     }
 
