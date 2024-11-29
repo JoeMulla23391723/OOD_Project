@@ -1,4 +1,4 @@
 Name,Id,Job Title,PPS Number,Email,Address,Phone Number,Age,Medical Card Holder,Health Insurance Holder,Status,Tax Credits,Password,Number of Household Incomes,Household Higher Earner,Unions,Health Plan Name,Health Plan Type,Salary Scale Point,Department,Salary
-Jack,107,teaching_assistant,4319874L,jacktorrence@gmail.com,doon,0862345683,23,false,true,Single person,Employee Tax Credit;Rent Tax Credit,password123,1,true,Irish Federation of University Teachers,VHI HealthPlus Extra,Single,0,academic,37010
-Holly,108,research_assistant,4319875M,hollygibney@gmail.com,cappawhite,0862345684,28,true,false,Married couple,Employee Tax Credit;Home Carer Tax Credit,password456,2,true,Irish Federation of University Teachers,VHI HealthPlus Extra,Family,5,researchers,35856
+Jack,107,teaching_assistant,4319874L,jacktorrence@gmail.com,Doon,0862345683,23,false,true,Single person,Employee Tax Credit;Rent Tax Credit,password123,1,true,Irish Federation of University Teachers,VHI HealthPlus Extra,Single,0,academic,37010
+Holly,108,research_assistant,4319875M,hollygibney@gmail.com,Cappawhite,0862345684,28,true,false,Married couple,Employee Tax Credit;Home Carer Tax Credit,password456,2,true,Irish Federation of University Teachers,VHI HealthPlus Extra,Family,5,researchers,35856
 
