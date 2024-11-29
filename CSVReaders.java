@@ -15,7 +15,7 @@ import java.io.*;
             String[] tokens;
             String row = input.nextLine();
             //Splitting the comma separated values into an array of strings
-            tokens = row.split(",");
+            tokens  = row.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
             return tokens;
         }
 
