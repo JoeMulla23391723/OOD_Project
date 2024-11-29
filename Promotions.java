@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class Promotions {
     private int employeeID;
-    private LocalDate now = LocalDate.now();
+    private LocalDate now;
     private static ArrayList<Promotions> promotions = new ArrayList<Promotions>();
 
     // Constructor
@@ -21,11 +21,12 @@ public class Promotions {
     }
 
     // Method to promote an employee every october if they have not been promoted already that month
-    public void promoteEmployeeBasedOnTime(int employeeID) throws IllegalArgumentException {
+    public void promoteEmployeeBasedOnTime(int employeeID, String jobTitle) throws IllegalArgumentException {
         int currentMonth = LocalDate.now().getMonthValue();
         if (currentMonth == 10) {
             for (Promotions promotion : promotions) {
                 if (promotion.getEmployeeID() == employeeID && promotion.getNow().getMonthValue() == now.getMonthValue()) {
+                    promotion.changeJobTitle(employeeID,jobTitle);
                     promotions.add(new Promotions(employeeID, LocalDate.now()));
                 }
                 else { throw new IllegalArgumentException("Employee has already been promoted"); }
