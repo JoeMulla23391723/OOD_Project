@@ -1,4 +1,4 @@
-
+package OOD;
 
 import java.util.Scanner;
 
@@ -45,7 +45,7 @@ public class EmployeeMenu {
 
 			}
 		}else {
-			System.out.println("C)urrent Payslip, P)ast payslips L)ogout ");
+			System.out.println("C)urrent Payslip \nP)ast payslips \nV)iew Details\nL)ogout ");
 			String command = in.nextLine().toUpperCase();
 			Payslip payslip = new Payslip();
 
@@ -55,7 +55,11 @@ public class EmployeeMenu {
 
 			}else if(command.equals("P")) {
 				System.out.print("Past payslips are not available for part-time employees.");
+				
 
+			}else if(command.equals("V")) {
+				System.out.println(Employees.getEmployeeFromIndex(employeeID).toString());
+				
 			}else if(command.equals("L")) {
 				System.out.print("Logging out...");
 			}
