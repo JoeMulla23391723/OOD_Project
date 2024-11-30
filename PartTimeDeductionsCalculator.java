@@ -1,4 +1,5 @@
-public class PartTimeDeductionsCalculator {
+
+public class PartTimeSalaryCalculator {
     private double uscToPayPerMonth; //usc
     private String prsiSubClass; //prsi
     private double prsiEmployerContribution;//prsi
@@ -14,8 +15,8 @@ public class PartTimeDeductionsCalculator {
     private double healthInsuranceCompanyDiscountRate = 0.15; //health
     private double healthInsuranceCostPerMonth; //health
 
-    // No argument constructor for FullTimeDeductionsCalculator
-    public PartTimeDeductionsCalculator(){
+    // No argument constructor for FullTimeSalaryCalculator
+    public PartTimeSalaryCalculator(){
     }
 
     //Set and calculate methods for usc
@@ -67,6 +68,10 @@ public class PartTimeDeductionsCalculator {
             }
         }
         uscToPayPerMonth = uscToPay;
+        return uscToPayPerMonth;
+    }
+
+    public double getUscToPayPerMonth(){
         return uscToPayPerMonth;
     }
 
@@ -123,6 +128,9 @@ public class PartTimeDeductionsCalculator {
         return prsiToPayPerMonth;
     }
 
+    public double getPrsiToPayPerMonth() {
+        return prsiToPayPerMonth;
+    }
 
     //Set and calculate methods for tax
     public void setGrossTax(double grossTaxPerMonth) {
@@ -301,26 +309,26 @@ public class PartTimeDeductionsCalculator {
         String healthPlan = partTime.getHealthPlan();
         String healthPlanType = partTime.getHealthPlanType();
         if(healthInsurance==true) {
-            if(healthPlan == "VHI One Plan 250") {
-                if(healthPlanType=="Single") {
+            if(healthPlan.equals("VHI One Plan 250")) {
+                if(healthPlanType.equals("Single")) {
                     healthInsuranceCost = (1440/12);
                 }else { //(healthPlanType=="Family")
                     healthInsuranceCost=(3600/12); //allows for family plans
                 }
-            }else if(healthPlan == "VHI HealthPlus Extra") {
-                if(healthPlanType=="Single") {
+            }else if(healthPlan.equals("VHI HealthPlus Extra")) {
+                if(healthPlanType.equals("Single")) {
                     healthInsuranceCost =(2040/12);
                 }else {
                     healthInsuranceCost=(5400/12);
                 }
-            }else if (healthPlan == "VHI Company Plan Extra") {
-                if(healthPlanType=="Single") {
+            }else if (healthPlan.equals("VHI Company Plan Extra")) {
+                if(healthPlanType.equals("Single")) {
                     healthInsuranceCost= (4200/12);
                 }else {
                     healthInsuranceCost= (12000/12);
                 }
             }else{ //(healthPlan == "VHI PMI Plans")
-                if(healthPlanType == "Single") {
+                if(healthPlanType .equals("Single")) {
                     healthInsuranceCost=(3000/12);
                 }else {
                     healthInsuranceCost=(7800/12);
@@ -340,7 +348,7 @@ public class PartTimeDeductionsCalculator {
         double hoursWorked = partTimeEmployee.getHoursWorkedThisPayPeriod();
         double hourlyRateOfPay = partTimeEmployee.getHourlyRate();
         double temp = hoursWorked * hourlyRateOfPay;
-        double partTimeNetPayPerMonth = temp - (calculateUscPaid(employeeID) + calculatePrsiPaid(employeeID) +
+        double partTimeNetPayPerMonth = temp - (getUscToPayPerMonth() + getPrsiToPayPerMonth() +
                 calculateNetTax(employeeID) + calculateUnionFees(employeeID)
                 + calculateHeathInsuranceCost(employeeID));
         return partTimeNetPayPerMonth;
