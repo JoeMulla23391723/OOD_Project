@@ -25,20 +25,50 @@ id: 1234  password: admin_pass
 If you login successfully, you will be prompted to either add an employee to the system or logout
 Should you choose to add an employee you will then be prompted to choose whether you wish to add a full-time or part-time
 You will then be prompted enter a series of inputs based on employee information
+
 IMPORTANT!
-When entering tax credits the options are as follows:
 
-They must be entered exactly as they appear here
-When entering tax credits the options are as follows:
+When entering status the options are as follows:
+Single person
+Lone parent
+Married Couple/civil partners
+A status must be entered exactly as it appears here
 
+When entering tax credits the options are as follows:
+Employee Tax Credit
+Single Person Child Carer Credit
+Incapacitated Child Tax Credit
+Dependent Relative Tax Credit
+Age Tax Credit
+Tuition Fees Tax Credit
+Rent Tax Credit
+Blind Person's Tax Credit
+Disability Tax Credit
 They must be entered exactly as they appear here
 If the employee has more than one tax credit, they must be entered in the one line separated by a comma and with no spaces in between 
 as such ...
+Blind Person's Tax Credit,Age Tax Credit
 
 When entering unions the options are as follows:
+Irish Federation of University Teachers
+Unite
+Services Industrial Professional and Technical Union
 They must be entered exactly as they appear here
-If the employee belongs to more than one tax credit, they must be entered in the one line separated by a comma and with no spaces in between 
+If the employee belongs to more than one union, they must be entered in the one line separated by a comma and with no spaces in between 
 as such ...
+Unite,Irish Federation of University Teachers
+
+When entering health plan the options are as follows:
+VHI One Plan 250
+VHI HealthPlus Extra
+They must be entered exactly as they appear here
+
+When entering health plan type the options are as follows:
+Single
+Family
+They must be entered exactly as they appear here
+
+
 
 **HR**
 The HR login that exists in the system is ...
