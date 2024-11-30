@@ -22,7 +22,26 @@ If you have selected part-time you may view current payslips or view details ass
 **Admin**
 The admin login that exists in the system is ...
 id: 1234  password: admin_pass
+If you login successfully, you will be prompted to either add an employee to the system or logout
+Should you choose to add an employee you will then be prompted to choose whether you wish to add a full-time or part-time
+You will then be prompted enter a series of inputs based on employee information
+IMPORTANT!
+When entering tax credits the options are as follows:
+
+They must be entered exactly as they appear here
+When entering tax credits the options are as follows:
+
+They must be entered exactly as they appear here
+If the employee has more than one tax credit, they must be entered in the one line separated by a comma and with no spaces in between 
+as such ...
+
+When entering unions the options are as follows:
+They must be entered exactly as they appear here
+If the employee belongs to more than one tax credit, they must be entered in the one line separated by a comma and with no spaces in between 
+as such ...
+
 **HR**
 The HR login that exists in the system is ...
-id: 
+If you login successfully, you will be prompted to promote an employee
+id: 5678  password: hr_pass
 
