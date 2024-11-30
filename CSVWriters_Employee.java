@@ -28,27 +28,27 @@ public class CSVWriters {
     public void writeEmployeeFullEmployee(Employee employee) {
         FullTimeEmployee fullTimeEmployee = (FullTimeEmployee) employee;
         String row = String.format("%s,%d,%s,%s,%s,%s,%s,%d,%b,%b,%s,%s,%s,%d,%b,%s,%s,%s,%s,%s,%.2f",
-                fullTimeEmployee.getName(),                     // Name
-                fullTimeEmployee.getId(),                       // Id
-                fullTimeEmployee.getJobTitle(),                 // Job Title
-                fullTimeEmployee.getPps(),                      // PPS Number
-                fullTimeEmployee.getEmail(),                    // Email
-                fullTimeEmployee.getAddress(),                  // Address
-                fullTimeEmployee.getPhoneNum(),                 // Phone Number
-                fullTimeEmployee.getAge(),                      // Age
-                fullTimeEmployee.hasMedicalCard(),              // Medical Card Holder
-                fullTimeEmployee.hasHealthInsurance(),          // Health Insurance Holder
-                fullTimeEmployee.getStatus(),                   // Status
-                String.join(";", fullTimeEmployee.getTaxCredits()), // Tax Credits
-                fullTimeEmployee.getPassword(),                 // Password
-                fullTimeEmployee.getNumIncomes(),               // Number of Household Incomes
-                fullTimeEmployee.isHigherEarner(),              // Household Higher Earner
-                String.join(";", fullTimeEmployee.getUnions()), // Unions
-                fullTimeEmployee.getHealthPlan(),               // Health Plan Name
-                fullTimeEmployee.getHealthPlanType(),           // Health Plan Type
-                fullTimeEmployee.getSalaryScalePoint(),         // Salary Scale Point
-                fullTimeEmployee.getDepartment(),               // Department
-                fullTimeEmployee.getSalary()                	// Salary
+                fullTimeEmployee.getName(),                     
+                fullTimeEmployee.getId(),                       
+                fullTimeEmployee.getJobTitle(),                 
+                fullTimeEmployee.getPps(),                      
+                fullTimeEmployee.getEmail(),                    
+                fullTimeEmployee.getAddress(),                  
+                fullTimeEmployee.getPhoneNum(),                 
+                fullTimeEmployee.getAge(),                      
+                fullTimeEmployee.hasMedicalCard(),              
+                fullTimeEmployee.hasHealthInsurance(),          
+                fullTimeEmployee.getStatus(),                   
+                String.join(";", fullTimeEmployee.getTaxCredits()), 
+                fullTimeEmployee.getPassword(),                 
+                fullTimeEmployee.getNumIncomes(),               
+                fullTimeEmployee.isHigherEarner(),              
+                String.join(";", fullTimeEmployee.getUnions()), 
+                fullTimeEmployee.getHealthPlan(),               
+                fullTimeEmployee.getHealthPlanType(),           
+                fullTimeEmployee.getSalaryScalePoint(),         
+                fullTimeEmployee.getDepartment(),               
+                fullTimeEmployee.getSalary()                	
 
         );
 
@@ -59,28 +59,28 @@ public class CSVWriters {
         PartTimeEmployee partTimeEmployee = (PartTimeEmployee) employee;
         String row = String.format(
                 "%s,%d,%s,%s,%s,%s,%s,%d,%b,%b,%s,%s,%s,%d,%b,%s,%s,%s,%.2f,%b,%s,%.2f",
-                partTimeEmployee.getName(),                       // Name
-                partTimeEmployee.getId(),                         // Id
-                partTimeEmployee.getJobTitle(),                   // Job Title
-                partTimeEmployee.getPps(),                        // PPS Number
-                partTimeEmployee.getEmail(),                      // Email
-                partTimeEmployee.getAddress(),                    // Address
-                partTimeEmployee.getPhoneNum(),                   // Phone Number
-                partTimeEmployee.getAge(),                        // Age
-                partTimeEmployee.hasMedicalCard(),                // Medical Card Holder
-                partTimeEmployee.hasHealthInsurance(),            // Health Insurance Holder
-                partTimeEmployee.getStatus(),                     // Status
-                String.join(";", partTimeEmployee.getTaxCredits()), // Tax Credits
-                partTimeEmployee.getPassword(),                   // Password
-                partTimeEmployee.getNumIncomes(),                 // Number of Household Incomes
-                partTimeEmployee.isHigherEarner(),                // Household Higher Earner
-                String.join(";", partTimeEmployee.getUnions()),   // Unions
-                partTimeEmployee.getHealthPlan(),                 // Health Plan Name
-                partTimeEmployee.getHealthPlanType(),             // Health Plan Type
-                partTimeEmployee.getHourlyRate(),                 // Hourly Rate Of Pay
-                partTimeEmployee.getPayClaimSubmitted(),           // Pay Claim Submitted
-                partTimeEmployee.getDatePayClaimSubmitted().toString(), // Date Pay Claim Form Submitted
-                partTimeEmployee.getHoursWorkedThisPayPeriod()    // Hours Worked This Pay Period
+                partTimeEmployee.getName(),                       
+                partTimeEmployee.getId(),                         
+                partTimeEmployee.getJobTitle(),                  
+                partTimeEmployee.getPps(),                        
+                partTimeEmployee.getEmail(),                    
+                partTimeEmployee.getAddress(),                    
+                partTimeEmployee.getPhoneNum(),                   
+                partTimeEmployee.getAge(),                        
+                partTimeEmployee.hasMedicalCard(),                
+                partTimeEmployee.hasHealthInsurance(),            
+                partTimeEmployee.getStatus(),                    
+                String.join(";", partTimeEmployee.getTaxCredits()), 
+                partTimeEmployee.getPassword(),                   
+                partTimeEmployee.getNumIncomes(),                 
+                partTimeEmployee.isHigherEarner(),                
+                String.join(";", partTimeEmployee.getUnions()),   
+                partTimeEmployee.getHealthPlan(),                 
+                partTimeEmployee.getHealthPlanType(),             
+                partTimeEmployee.getHourlyRate(),                 
+                partTimeEmployee.getPayClaimSubmitted(),          
+                partTimeEmployee.getDatePayClaimSubmitted().toString(), 
+                partTimeEmployee.getHoursWorkedThisPayPeriod()   
         );
 
         partTimeWriter.println(row);
