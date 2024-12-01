@@ -1,0 +1,147 @@
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class PartTimeEmployee extends Employee{
+    private double hourlyRate;
+    private boolean payClaimSubmitted;
+    private LocalDate datePayClaimSubmitted;
+    private double hoursWorkedThisPayPeriod;
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");;
+
+
+    /**
+     * Constructor to construct an object of type FullTimeEmployee based on details read from a CSV file and parsed
+     * @param employeeDetails Refers to the String array of employees read from a CSV file
+     */
+    public PartTimeEmployee(String[] employeeDetails){
+        super(employeeDetails);
+        this.hourlyRate = Double.parseDouble(employeeDetails[18]);
+        this.payClaimSubmitted = Boolean.parseBoolean(employeeDetails[19]);
+        this.datePayClaimSubmitted = LocalDate.parse(employeeDetails[20], DATE_FORMAT);
+        this.hoursWorkedThisPayPeriod = Double.parseDouble(employeeDetails[21]);
+    }
+
+    /**
+     * Constructor to construct an object of type PartTimeEmployee based on the data fields in this class and those in the Employee superclass
+     * @param name Refers to the name of the employee
+     * @param id Refers to the ID of the employee
+     * @param jobTitle Refers to the job title of the employee
+     * @param pps Refers to the pps number of the employee
+     * @param email Refers to the email address of the employee
+     * @param address Refers to the address of the employee
+     * @param phoneNum Refers to the phone number of the employee
+     * @param age Refers to the age of the employee
+     * @param medicalCard Refers to whether or not the employee holds a medical card
+     * @param healthInsurance Refers to whether or not the employee has health insurance
+     * @param status Refers to the status of the employee
+     * @param taxCredits Refers to the tax credits the employee is entitled to
+     * @param password Refers to the employee's login password
+     * @param numIncomes Refers to the number of incomes in the employee's household
+     * @param higherEarner Refers to whether or not the employee is the highest earner in their household
+     * @param unions Refers to the unions to which the employee belongs
+     * @param healthPlan Refers to the employee's health plan
+     * @param healthPlanType Refers to the type of health plan the employee has
+     *
+     */
+    public PartTimeEmployee(String name, int id, String jobTitle, String pps, String email, String address, String phoneNum, int age, boolean medicalCard, boolean healthInsurance, String status, String[] taxCredits, String password, int numIncomes, boolean higherEarner, String[] unions, String healthPlan, String healthPlanType, double hourlyRate, boolean payClaimSubmitted, LocalDate datePayClaimSubmitted, double hoursWorkedThisPayPeriod) {
+        super(name, id, jobTitle, pps, email, address, phoneNum, age, medicalCard, healthInsurance, status, taxCredits, password, numIncomes, higherEarner, unions, healthPlan, healthPlanType);
+        this.hourlyRate = hourlyRate;
+        this.payClaimSubmitted = payClaimSubmitted;
+        this.hoursWorkedThisPayPeriod = hoursWorkedThisPayPeriod;
+        this.datePayClaimSubmitted = datePayClaimSubmitted;
+    }
+
+    LocalDate secondFriday;
+
+    /**
+     * Method to determine whether an employee has submitted their pay-claim on time
+     */
+    public boolean validSubmissionDate(LocalDate datePayClaimSubmitted){
+            int year = datePayClaimSubmitted.getYear();
+            int month = datePayClaimSubmitted.getMonthValue();
+
+            secondFriday = LocalDate.of(year, month, 1);
+
+            while (secondFriday.getDayOfWeek() != DayOfWeek.FRIDAY) {
+                secondFriday = secondFriday.plusDays(1);
+            }
+            secondFriday = secondFriday.plusDays(7);
+
+        return datePayClaimSubmitted.isBefore(secondFriday);
+    }
+
+
+    /**
+     * Accessor method to obtain an employee's hourly rate of pay
+     */
+    public double getHourlyRate(){
+        return hourlyRate;
+    }
+
+    /**
+     * Mutator method to set hourly rate of pay for employee
+     * @param hourlyRate Refers to an employee's hourly rate of pay
+     */
+    public void setHourlyRate(double hourlyRate){
+        this.hourlyRate = hourlyRate;
+    }
+
+    /**
+     * Accessor method to determine whether an employee submitted a pay-claim
+     */
+    public boolean getPayClaimSubmitted(){
+        return payClaimSubmitted;
+    }
+
+    /**
+     * Mutator method to set whether an employee submitted a pay-claim
+     * @param payClaimSubmitted Refers to whether an employee submitted a pay-claim
+     */
+    public void setPayClaimSubmitted (boolean payClaimSubmitted){
+        this.payClaimSubmitted = payClaimSubmitted;
+    }
+
+    /**
+     * Accessor method to obtain date employee pay-claim was submitted
+     */
+    public LocalDate getDatePayClaimSubmitted(){
+        return datePayClaimSubmitted;
+    }
+
+    /**
+     * Mutator method to set date on which employee pay-claim was submitted
+     * @param datePayClaimSubmitted Refers to date on which employee pay-claim was submitted
+     */
+    public void setDatePayClaimSubmitted (LocalDate datePayClaimSubmitted){
+        this.datePayClaimSubmitted = datePayClaimSubmitted;
+    }
+
+    /**
+     * Accessor method to obtain hours worked by employee for this pay period
+     */
+    public double getHoursWorkedThisPayPeriod() {
+        return hoursWorkedThisPayPeriod;
+    }
+
+    /**
+     * Mutator method to set hours worked by employee for this pay period
+     * @param hoursWorkedThisPeriod Refers to the hours worked by employee for this pay period
+     */
+    public void setHoursWorkedThisPeriod (double hoursWorkedThisPeriod){
+        this.hoursWorkedThisPayPeriod = hoursWorkedThisPeriod;
+    }
+
+
+    /**
+     * Method to display data fields that a PartTimeEmployee object was constructed using
+     */
+    public String toString(){
+        return super.toString() + "\nHourly Rate: " + getHourlyRate()
+                + "\n Pay Claim Submitted: " + getPayClaimSubmitted()
+                + "\n Date Pay Claim Submitted: " + getDatePayClaimSubmitted()
+                + "\n Hours Worked This Pay Period: " + getHoursWorkedThisPayPeriod();
+    }
+
+}
