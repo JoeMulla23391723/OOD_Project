@@ -13,9 +13,9 @@ public class Employees {
         this.employees = employees;
     }
 
-    /**
+   /**
      * Method to read a full-time employee's details into the array stored in this class
-     * @param fileName Refers to the name of the array of stored employees
+     * @param fileName Refers to the name of the file containing employee information
      */
     public static void readFullTimeEmployees(String fileName) throws FileNotFoundException {
         CSVReaders reader = new CSVReaders(fileName);
