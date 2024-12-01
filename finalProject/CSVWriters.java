@@ -106,14 +106,7 @@ public class CSVWriters {
 
         partTimeWriter.println(row);
     }
-    /**
-     * Write the headers in the CSV files 
-     */
-    private void writeHeaders() {
-        fullTimeWriter.println("Name, Id, Job Title, PPS Number, Email, Address, Phone Number, Age, Medical Card Holder, Health Insurance Holder, Status, Tax Credits, Password, Number of Household Incomes, Household Higher Earner, Unions, Health Plan Name, Health Plan Type, Salary Scale Point, Department, Salary, Years At Top Of Scale, Professional Category");
-        partTimeWriter.println("Name, Id, Job Title, PPS Number, Email, Address, Phone Number, Age, Medical Card Holder, Health Insurance Holder, Status, Tax Credits, Password, Number of Household Incomes, Household Higher Earner, Unions, Health Plan Name, Health Plan Type, Hourly Rate Of Pay, Pay Claim Submitted, Date Pay Claim Form Submitted, Hours Worked This Pay Period");
-    }
-
+    
 
     /**
      * Write all employees to the correct CSV file based on whether they are a part time or full time employee
