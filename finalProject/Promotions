@@ -1,0 +1,64 @@
+
+
+import java.time.LocalDate;
+import java.util.*;
+
+public class Promotions {
+    private int employeeID;
+    private LocalDate now;
+    private static ArrayList<Promotions> promotions = new ArrayList<Promotions>();
+
+    /**
+     * Constructor to construct an object of type Promotions
+     * @param employeeID Refers to the name of the array of stored employees
+     * @param now Refers to the current date on the system running the program
+     */
+    public Promotions(int employeeID, LocalDate now) {
+        this.employeeID = employeeID;
+        this.now = LocalDate.now();
+    }
+
+    /**
+     * Method to change an employee's job title
+     * @param employeeID Refers to an employee's ID number
+     * @param jobTitle Refers to the employee's new promoted job title
+     */
+    public void changeJobTitle(int employeeID, String jobTitle) {
+        Employee employee = Employees.getEmployeeFromIndex(employeeID);
+        employee.setJobTitle(jobTitle);
+    }
+
+    /**
+     * Method to change an employee's job title given that it is October
+     * @param employeeID Refers to an employee's ID number
+     * @param jobTitle Refers to the employee's new promoted job title
+     */
+    public void promoteEmployeeBasedOnTime(int employeeID, String jobTitle) throws IllegalArgumentException {
+        int currentMonth = LocalDate.now().getMonthValue();
+        if (currentMonth == 10) {
+            for (Promotions promotion : promotions) {
+                if (promotion.getEmployeeID() == employeeID && promotion.getNow().getMonthValue() == now.getMonthValue()) {
+                    promotion.changeJobTitle(employeeID,jobTitle);
+                    promotions.add(new Promotions(employeeID, LocalDate.now()));
+                }
+                else { throw new IllegalArgumentException("Employee has already been promoted"); }
+            }
+        }
+        else {
+            throw new IllegalArgumentException("Employee cannot be promoted this month"); }
+    }
+
+    /**
+     * Accessor method to obtain an employee's ID number
+     */
+    public int getEmployeeID () {
+        return employeeID;
+    }
+
+    /**
+     * Accessor method to obtain current system date
+     */
+    public LocalDate getNow () {
+        return now;
+    }
+}
