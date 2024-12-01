@@ -5,8 +5,8 @@ public class Employees {
     //Array list of type Employee that stores employee details
     private static ArrayList<Employee> employees = new ArrayList<>();
 
-    /**
-     * Constructor to initialize a CourseArray with a given course name
+      /**
+     * Constructor to construct an object of type Employees
      * @param employees Refers to the name of the array of stored employees
      */
     public Employees(ArrayList<Employee> employees) {
