@@ -43,7 +43,10 @@ public class PartTimeEmployee extends Employee{
      * @param unions Refers to the unions to which the employee belongs
      * @param healthPlan Refers to the employee's health plan
      * @param healthPlanType Refers to the type of health plan the employee has
-     *
+     * @param hourlyRate Refers to the employee's hourly rate of pay
+     * @param payClaimSubmitted Refers to whether an employee submitted a pay-claim
+     * @param hoursWorkedThisPayPeriod Refers to the hours worked by an employee for this pay period
+     * @param datePayClaimSubmitted Refers to the date on which an employee submitted a pay-claim
      */
     public PartTimeEmployee(String name, int id, String jobTitle, String pps, String email, String address, String phoneNum, int age, boolean medicalCard, boolean healthInsurance, String status, String[] taxCredits, String password, int numIncomes, boolean higherEarner, String[] unions, String healthPlan, String healthPlanType, double hourlyRate, boolean payClaimSubmitted, LocalDate datePayClaimSubmitted, double hoursWorkedThisPayPeriod) {
         super(name, id, jobTitle, pps, email, address, phoneNum, age, medicalCard, healthInsurance, status, taxCredits, password, numIncomes, higherEarner, unions, healthPlan, healthPlanType);
