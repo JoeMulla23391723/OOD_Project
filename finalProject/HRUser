@@ -1,0 +1,53 @@
+/**
+ * Represents an HR user with credentials and functionality for validation.
+ * This class provides methods to access and validate the HR user's ID and password.
+ */
+
+public class HRUser {
+    private static String HRID = "5678";
+    private static String password = "hr_pass";
+    
+    /**
+     * Constructs an HRUser instance with a specified ID and password.
+     *
+     * @param HRID    The HR user's unique ID.
+     * @param password The HR user's password.
+     */
+
+    public HRUser(String HRID, String password) {
+        this.HRID = HRID;
+        this.password = password;
+    }
+    
+    /**
+     * Retrieves the HR user's ID.
+     *
+     * @return The HR user's ID.
+     */
+
+    public static String getHRID() {
+        return HRID;
+    }
+    
+    /**
+     * Retrieves the HR user's password.
+     *
+     * @return The HR user's password.
+     */
+
+    public static String getPassword() {
+        return password;
+    }
+    
+    /**
+     * Validates the provided password against the HR user's stored password.
+     *
+     * @param inputPassword The password to validate.
+     * @return {@code true} if the input password matches the stored password, {@code false} otherwise.
+     */
+
+    public boolean validatePassword(String inputPassword) {
+        return this.password.equals(inputPassword);
+    }
+
+}
