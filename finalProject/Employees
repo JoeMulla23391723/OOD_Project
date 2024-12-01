@@ -1,0 +1,100 @@
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
+public class Employees {
+    //Array list of type Employee that stores employee details
+    private static ArrayList<Employee> employees = new ArrayList<>();
+
+    /**
+     * Constructor to initialize a CourseArray with a given course name
+     * @param employees Refers to the name of the array of stored employees
+     */
+    public Employees(ArrayList<Employee> employees) {
+        this.employees = employees;
+    }
+
+    /**
+     * Method to read a full-time employee's details into the array stored in this class
+     * @param fileName Refers to the name of the array of stored employees
+     */
+    public static void readFullTimeEmployees(String fileName) throws FileNotFoundException {
+        CSVReaders reader = new CSVReaders(fileName);
+        ArrayList<FullTimeEmployee> employeeDetails = reader.readFullTimeEmployees();
+        for (FullTimeEmployee employee : employeeDetails) {
+            employees.add(employee);
+        }
+    }
+
+    /**
+     * Method to read a part-time employee's details into the array stored in this class
+     * @param fileName Refers to the name of the array of stored employees
+     */
+    // Method to read in part-time employees into the ArrayList from CSV file
+    public static void readPartTimeEmployees(String fileName) throws FileNotFoundException, IllegalArgumentException {
+        CSVReaders reader = new CSVReaders(fileName);
+        ArrayList<PartTimeEmployee> employeeDetails = reader.readPartTimeEmployees();
+        for (PartTimeEmployee employee : employeeDetails) {
+            employees.add(employee);
+        }
+    }
+
+    /**
+     * Accessor method to return the array stored in this class
+     *
+     */
+    public static ArrayList<Employee> getEmployees() {
+        return employees;
+    }
+
+
+    /**
+     * Mutator method to add a full-time employee to the array list in this class
+     * @param ft Refers to an object of type FullTimeEmployee
+     */
+    public static void addFullTimeEmployee(FullTimeEmployee ft) {
+        employees.add(ft);
+    }
+
+    /**
+     * Mutator method to add a part-time employee to the array list in this class
+     * @param pt Refers to an object of type FullTimeEmployee
+     */
+    public static void addPartTimeEmployee(PartTimeEmployee pt) {
+        employees.add(pt);
+    }
+
+
+    /**
+     * Method to retrieve the index position of a specific Employee object in the array list given the associated employee ID number
+     * @param employeeID Refers to the employee's ID number
+     */
+    public static int getIndexOfEmployeeID(int employeeID) throws IllegalArgumentException {
+        boolean here = false;
+        for (Employee employee : getEmployees()) {
+            if (employee.getId() == employeeID) {
+                here = true;
+            }
+        }
+        int index = 0;
+        if (here) {
+            for (int i = 0; i < getEmployees().size(); i++) {
+                if (getEmployees().get(i).getId() == employeeID) {
+                    index = i;
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("Employee does not exist in the system");
+        }
+        return index;
+    }
+
+    /**
+     * Method to retrieve a specific Employee object based upon its index position in the array
+     * @param employeeID Refers to the employee's ID number
+     */
+    public static Employee getEmployeeFromIndex(int employeeID) {
+        Employee e = Employees.getEmployees().get(getIndexOfEmployeeID(employeeID));
+        return e;
+    }
+}
+
