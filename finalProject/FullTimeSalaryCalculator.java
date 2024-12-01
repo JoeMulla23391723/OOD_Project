@@ -321,31 +321,31 @@
          * @return healthInsuranceCostPerMonth
          */
         public double calculateHeathInsurance(int employeeID) {
-            Employee fullTime = Employees.getEmployeeFromIndex(employeeID);  //Retrieves an employee object from Employees based on employeeID and names it fullTime
-            boolean healthInsurance = fullTime.hasHealthInsurance();		//Casts the object fullTime to a more specific type FullTimeEmployee and calls it fullTimeEmployee
-            String healthPlan = fullTime.getHealthPlan();    //get the time of health plan 
-            String healthPlanType = fullTime.getHealthPlanType(); //gets whether the health plan is for a single person or a family
+            Employee fullTime = Employees.getEmployeeFromIndex(employeeID);
+            boolean healthInsurance = fullTime.hasHealthInsurance();
+            String healthPlan = fullTime.getHealthPlan();
+            String healthPlanType = fullTime.getHealthPlanType();
             if(healthInsurance==true) {
-                if(healthPlan == "VHI One Plan 250") {
-                    if(healthPlanType=="Single") {
+                if(healthPlan .equals("VHI One Plan 250")){
+                    if(healthPlanType.equals("Single") ){
                         healthInsuranceCost = 1440;
                     }else { //(healthPlanType=="Family")
                         healthInsuranceCost=3600; //allows for family plans
                     }
-                }else if(healthPlan == "VHI HealthPlus Extra") {
-                    if(healthPlanType=="Single") {
+                }else if(healthPlan.equals("VHI HealthPlus Extra")) {
+                    if(healthPlanType.equals("Single")) {
                         healthInsuranceCost =2040;
                     }else {
                         healthInsuranceCost=5400;
                     }
-                }else if (healthPlan == "VHI Company Plan Extra") {
-                    if(healthPlanType=="Single") {
+                }else if (healthPlan.equals( "VHI Company Plan Extra")) {
+                    if(healthPlanType.equals("Single") ){
                         healthInsuranceCost= 4200;
                     }else {
                         healthInsuranceCost= 12000;
                     }
                 }else{ //(healthPlan == "VHI PMI Plans")
-                    if(healthPlanType == "Single") {
+                    if(healthPlanType.equals("Single") ){
                         healthInsuranceCost=3000;
                     }else {
                         healthInsuranceCost=7800;
@@ -353,12 +353,13 @@
                 }
             }
 
-            double healthInsuranceCompanyDiscountRate = 0.15; // sets the company discount 
-            double healthInsuranceCompanyDiscount = healthInsuranceCost * healthInsuranceCompanyDiscountRate; //gets the total discount amount
-            healthInsuranceCost = healthInsuranceCost - healthInsuranceCompanyDiscount; //gets the total amount to pay for health insurance including the discount per year
-            healthInsuranceCostPerMonth= healthInsuranceCost/12; //gets the total amount per month
+            double healthInsuranceCompanyDiscountRate = 0.15;
+            double healthInsuranceCompanyDiscount = healthInsuranceCost * healthInsuranceCompanyDiscountRate;
+            healthInsuranceCost = healthInsuranceCost - healthInsuranceCompanyDiscount;
+            healthInsuranceCostPerMonth= healthInsuranceCost/12;
             return healthInsuranceCostPerMonth;
         }
+
         
         /**
          * Gets the salary of a full time employee before deductions are applied 
