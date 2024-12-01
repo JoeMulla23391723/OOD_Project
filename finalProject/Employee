@@ -363,7 +363,9 @@ public class Employee { //superclass of all employees
     }
 
     /**
-     * Method to display data fields that an Employee object was constructed using
+     * toString() method to show the employee's details
+     * is called by parttime and fulltime employee with 
+     * their additional details
      */
     public String toString(){
         return "Name: " + getName() + "\nID: " + getId() + "\nTitle:" + getJobTitle()
